@@ -47,6 +47,10 @@
     padding: 5px;
     margin: 10px;
   }
+
+  .hidden {
+    visibility: hidden;
+  }
   </style>
 </head>
 <body>
@@ -59,7 +63,7 @@
     
     <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;">
     
-    <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;">
+    <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;" class="">
     
     <img src="Images/closedChest.png" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
     
@@ -94,6 +98,7 @@
 
     function grabItem(e) {
       item = e.srcElement.getAttribute("src")
+      e.srcElement.classList.toggle("hidden")
       if (!inventory.includes(item)) {
         inventory.push(item)
         document.getElementById(inventory.indexOf(item).toString()).src = item
