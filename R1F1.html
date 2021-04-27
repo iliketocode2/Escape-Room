@@ -52,18 +52,18 @@
 <body>
   <div class="back">
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;margin-top:100px;">
-    <div class="rec">
-      <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position: fixed;left:0px">
+    <div class="rec" style="position: relative; top:500px; left:100px">
+      <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position: relative;top:-300px">
     </div>
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:300px;margin-top:100px;">
     
     <img src="Images/door.png" alt="door" style="height:400px;width:350px;">
     
-    <img src="Images/torch.gif" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;">
+    <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;">
     
-    <img src="Images/closedChest.png" alt="treasure chest" style="height:150px;width:200px;">
+    <img src="Images/closedChest.png" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
     
-    <img src="Images/handcuffs.png" alt="handcuffs" style="height:80px;width:100px;">
+    <img src="Images/handcuffs.png" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;">
     
     <img src="Images/hay.png" alt="pile of hay" style="height:200px;width:400px;">
   </div>
@@ -73,15 +73,23 @@
     <p>View your collected items below:</p>
     <div class="itembar">
       <div class="itemslot">
-        <p>#1</p>
+        <p>#1</p><img src="" id="slot1">
       </div>
       <div class="itemslot">
-        <p>#2</p>
+        <p>#2</p><img src="" id="slot2">
       </div>
       <div class="itemslot">
-        <p>#3</p>
+        <p>#3</p><img src="" id="slot3">
       </div>
     </div>
   </div>
+
+  <script>
+    inventory = ["", "", ""]
+    document.getElementById("torch").addEventListener("click", grabTorch);
+    function grabTorch() {
+      alert("test")
+    }
+  </script>
 </body>
 </html>
