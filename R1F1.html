@@ -57,7 +57,7 @@
     </div>
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:300px;margin-top:100px;">
     
-    <img src="Images/door.png" alt="door" style="height:400px;width:350px;">
+    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;">
     
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;">
     
@@ -73,23 +73,34 @@
     <p>View your collected items below:</p>
     <div class="itembar">
       <div class="itemslot">
-        <p>#1</p><img src="" id="slot1">
+        <p>#1</p><img src="" id="0" width="100px" height="100px">
       </div>
       <div class="itemslot">
-        <p>#2</p><img src="" id="slot2">
+        <p>#2</p><img src="" id="1" width="100px" height="100px">
       </div>
       <div class="itemslot">
-        <p>#3</p><img src="" id="slot3">
+        <p>#3</p><img src="" id="2" width="100px" height="100px">
       </div>
     </div>
   </div>
 
   <script>
-    inventory = ["", "", ""]
-    document.getElementById("torch").addEventListener("click", grabTorch);
-    function grabTorch() {
-      alert("test")
+    //  localStorage.setItem('inv', JSON.stringify(inventory)); - save inventory
+    //  JSON.parse(localStorage.getItem('inv'))
+
+    inventory = []
+
+    document.getElementById("torch").addEventListener("click", grabItem)
+
+    function grabItem(e) {
+      item = e.srcElement.getAttribute("src")
+      if (!inventory.includes(item)) {
+        inventory.push(item)
+        document.getElementById(inventory.indexOf(item).toString()).src = item
+        localStorage.setItem('inv', JSON.stringify(inventory));
+      }
     }
+
   </script>
 </body>
 </html>
