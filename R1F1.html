@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room 1, Floor 1</title>
+  <style>
+  body {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  .back{
+    background-image: url("cell.jpg");
+    height: 100%;
+  
+    /* Center and scale the image*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .rec {
+    background: gray;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+  }
+  .console {
+    width: 99%;
+    height: 250px;
+    background: skyblue;
+    text-align: left;
+    padding: 10px;
+  }
+  .itembar {
+    width: 98%;
+    height: 100px;
+    border: 3px solid blue;
+    border-radius: 5px;
+    background: lightblue;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .itemslot {
+    width: 75px;
+    height: 75px;
+    background: white;
+    padding: 5px;
+    margin: 10px;
+  }
+  </style>
+</head>
+<body>
+  <div class="back">
+    <img src="window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;margin-top:100px;">
+    <div class="rec">
+      <img src="keyForm.png" alt="key" style="width:75px;height:35px;">
+    </div>
+    <img src="window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:300px;margin-top:100px;">
+    
+    <img src="door.png" alt="door" style="height:400px;width:350px;">
+    
+    <img src="torch.gif" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;">
+    
+    <img src="closedChest.png" alt="treasure chest" style="height:150px;width:200px;">
+    
+    <img src="handcuffs.png" alt="handcuffs" style="height:80px;width:100px;">
+    
+    <img src="hay.png" alt="pile of hay" style="height:200px;width:400px;">
+  </div>
+  <div class="console">
+    <h3>messages will go here</h3>
+    <br>
+    <p>View your collected items below:</p>
+    <div class="itembar">
+      <div class="itemslot">
+        <p>#1</p>
+      </div>
+      <div class="itemslot">
+        <p>#2</p>
+      </div>
+      <div class="itemslot">
+        <p>#3</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

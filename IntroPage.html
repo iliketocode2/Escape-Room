@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Escape the Castle (Intro)</title>
+  <link rel="stylesheet" href="stylesEscape.css">
+  
+  <style>
+  .roundCorner {
+    float: left;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 500px;
+    height: 200px;
+    padding: 20px;
+    background: lightgray;
+  }
+  body{
+    background: gray;
+  }
+   /*Button CSS stuff*/
+  .btn {
+    border-radius: 5px;
+    padding: 15px 55px;
+    font-size: 22px;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 15px;
+    color: green;
+    position: relative;
+    display: inline-block;
+  }
+  .btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+  .green {
+    background-color: #d7d7d7;
+    box-shadow: 3px 5px 5px #888888;
+    border-radius: 2px;
+    transition: all 1s ease;
+    transform: scale(1);
+  }
+.green:hover {
+    background-color: white;
+  /*  Making button bigger on hover  */
+    transform: scale(1.1) perspective(1px)
+  }
+  .centerIt {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+  </style>
+</head>
+<body>
+  <img src="knight.png" alt="knight" style="width:400px;height:600px;margin-top:20px">
+  <div class="centerIt">
+    <div class="roundCorner">
+      <p>You were touring Europe's finest castles on your last vacation of 2020. Suddenly, the world locked down due to the virus without leaving any time for you to exit the anciant fortification of the castle Carona. Trapped in a cell, you start to panic -- the castle seems to be unstable! Do you have what it takes to escape the castle before it crumbles into dust? As soon as you continue, the 15 minute clock starts ticking...</p>
+      <p>If you've tried to escape previously and failed, use the walkthrough to find out how to make your way through this challange.</p>
+    </div>
+    <div id="buttons">
+      <a href="R1F1.html" class="btn green">CONTINUE</a>
+      <a href="Walkthrough.html" class="btn green">WALKTHROUGH</a>
+    </div>
+  </div>
+  <img src="knight.png" alt="knight" style="width:400px;height:600px;margin-top:20px;float:right;">
+</body>
+</html>

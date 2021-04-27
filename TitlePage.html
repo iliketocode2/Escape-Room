@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Escape the Castle (Welcome)</title>
+  <style>
+  body {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  .vague{
+    background-opacity: 50%;
+  }
+  h1 {
+    background: white;
+    font-size: 100px;
+    padding: 5px;
+  }
+  h2 {
+    background: white;
+    font-size: 30px;
+    padding: 5px;
+  }
+  h3 {
+    background: white;
+    font-size: 50px;
+    padding: 5px;
+  }
+  .cover{
+    background-image: url("Cover.jpg");
+    height: 100%;
+  
+    /* Center and scale the image*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+    /*Button CSS stuff*/
+  .btn {
+    border-radius: 5px;
+    padding: 15px 55px;
+    font-size: 22px;
+    text-decoration: none;
+    margin: 20px;
+    color: green;
+    position: relative;
+    display: inline-block;
+  }
+  .btn:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+  }
+  .green {
+    background-color: #d7d7d7;
+    box-shadow: 3px 5px 5px #888888;
+    border-radius: 2px;
+    transition: all 1s ease;
+    transform: scale(1);
+  }
+.green:hover {
+    background-color: white;
+  /*  Making button bigger on hover  */
+    transform: scale(1.5) perspective(1px)
+  }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="vague">
+      <br>
+      <h1>Escape from Castle Carona!</h1>
+      <h2>A game created by Will, Aidan and Mikhyle!</h2>
+      <br>
+      <div id="buttons">
+        <a href="IntroPage.html" class="btn green">PLAY</a>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</body>
+</html>
