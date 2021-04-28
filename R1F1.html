@@ -111,13 +111,14 @@
       }
     }
     
-    function openChest(){
-      var image = document.getElementById("chest").innerHTML;
-      if (image.src.match("closedChest")) {
-       image.src = "openChest.png";
+    function openChest(a){
+      console.log()
+      var image = document.getElementById("chest");
+      if (image.src.match("Images/closedChest")) {
+       image.src = "Images/openChest.png";
       }
       else {
-        image.src = "closedChest.png";
+        image.src = "Images/closedChest.png";
       }
     }
     
