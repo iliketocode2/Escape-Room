@@ -76,8 +76,7 @@
     <img src="Images/hay.png" id="hay" alt="pile of hay" style="height:200px;width:400px;">
   </div>
   <div class="console">
-    <h3 id="message">Goal:</h3>
-    <br>
+    <h3 id="info">Goal:</h3>
     <p>Items you have collected will appear below:</p>
     <div class="itembar" id="invbar">
       <!--<div class="itemslot" id="0">-->
@@ -88,6 +87,7 @@
     //  localStorage.setItem('inv', JSON.stringify(inventory)); - save inventory
     //  JSON.parse(localStorage.getItem('inv'))
     // localStorage.setItem('inv', []);
+    
     window.onload = function() {
       loadInv();
     };
@@ -116,6 +116,36 @@
 
     function clickGrab(e) {
       item = e.srcElement.getAttribute("src")
+      //Code to create item name
+      counter = item.length
+      itemName = "";
+      step = 0;
+      while (step != 2) {
+	      if (step == 0) {
+          if (item.charAt(item.length-counter) != "/") {
+            counter -= 1;
+          }
+          else {
+            step = 1;
+            counter -= 1;
+          }
+        }
+        else if (step == 1) {
+        	if (item.charAt(item.length-counter) != ".") {
+    		    var res = item.charAt(item.length-counter);
+    		    itemName = itemName + res;
+        	  counter -= 1;
+          }
+          else {
+        	  step = 2;
+          }
+        }
+        else {
+    	    alert('Something went wrong. Please try again.');
+        }
+      }
+      text = itemName;
+      //Final grabItem code
       e.srcElement.classList.toggle("hidden")
       grabItem(item)
     }
@@ -132,6 +162,7 @@
         invObj.appendChild(slot)
         localStorage.setItem('inv', JSON.stringify(inventory));
       }
+      text = "You found the " + itemName + ".";
     }
 
     function consume(name) {
@@ -155,6 +186,10 @@
       if (image.src.match("Images/closedChest") && consume("Images/key.png")) {
        image.src = "Images/openChest.png";
        grabItem("Images/key2.png")
+       text = "You found a key in the chest.";
+      }
+      else {
+        text = "You do not have the key to open this.";
       }
     }
 
@@ -162,22 +197,34 @@
       if (inventory.includes("Images/torch.gif") && inventory.includes("Images/handcuffs.png")) {
         document.getElementById("keyForm").classList.toggle("hidden")
         grabItem("Images/key.png")
+        text = "You melted the handcuffs using the torch. You now have a key.";
+      }
+      else {
+        text = "You do not have the right materials to create a key.";
       }
     }
 
     function giveKey() {
       grabItem("Images/key3.png")
+      text = "You found a key in the haystack.";
     }
 
     function openDoor() {
       if (consume("Images/key2.png") && consume("Images/key3.png")) {
-        alert("done")
+        text = "You have opened the door to the 2nd room.";
+      }
+      else {
+        text = "You need two keys to escape.";
       }
     }
-    
-    //Basic messages format, we will have to change later
-    text = "messages will go here";
-    document.getElementById("message").innerHTML = text;
+   
+    var text = "You're trapped in some sort of cell! Find a way to escape.";
+   
+    var time = setInterval(displayMessage, 10);
+   
+    function displayMessage() {
+      document.getElementById('info').innerHTML = text;
+    }
    
   </script>
 </body>
