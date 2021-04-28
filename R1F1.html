@@ -87,10 +87,10 @@
   <script>
     //  localStorage.setItem('inv', JSON.stringify(inventory)); - save inventory
     //  JSON.parse(localStorage.getItem('inv'))
-
-    //window.onload = function() {
-    //  loadInv();
-    //};
+    // localStorage.setItem('inv', []);
+    window.onload = function() {
+      loadInv();
+    };
 
     inventory = []
     invObj = document.getElementById("invbar")
@@ -103,7 +103,15 @@
 
     function loadInv() {
       inventory = JSON.parse(localStorage.getItem('inv'))
-      inventory.forEach((currentValue) => grabItem )
+      inventory.forEach(function(a) {
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${a}')`
+        slot.id = a
+        invObj.appendChild(slot)
+        localStorage.setItem('inv', JSON.stringify(inventory));
+    });
+
     }
 
     function clickGrab(e) {
