@@ -60,8 +60,8 @@
 <body>
   <div class="back">
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;margin-top:100px;">
-    <div class="rec" style="position: relative; top:500px; left:100px">
-      <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position: relative;top:-300px">
+    <div class="rec" style="position: relative; top:500px; left:100px" id="keyForm">
+      <img src="Images/keyForm.png"  alt="key" style="width:75px;height:35px;position: relative;top:-300px">
     </div>
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:300px;margin-top:100px;">
     
@@ -73,19 +73,14 @@
     
     <img src="Images/handcuffs.png" id="cuffs" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;" class="">
     
-    <img src="Images/hay.png" alt="pile of hay" style="height:200px;width:400px;">
+    <img src="Images/hay.png" id="hay" alt="pile of hay" style="height:200px;width:400px;">
   </div>
   <div class="console">
     <h3 id="message">Goal:</h3>
     <br>
     <p>Items you have collected will appear below:</p>
-    <div class="itembar">
-      <div class="itemslot" id="0">
-      </div>
-      <div class="itemslot" id="1">
-      </div>
-      <div class="itemslot" id="2">
-      </div>
+    <div class="itembar" id="invbar">
+      <!--<div class="itemslot" id="0">-->
     </div>
   </div>
 
@@ -93,35 +88,87 @@
     //  localStorage.setItem('inv', JSON.stringify(inventory)); - save inventory
     //  JSON.parse(localStorage.getItem('inv'))
 
+    //window.onload = function() {
+    //  loadInv();
+    //};
+
     inventory = []
-
-    document.getElementById("torch").addEventListener("click", grabItem)
-    document.getElementById("cuffs").addEventListener("click", grabItem)
-    document.getElementById("key").addEventListener("click", grabItem)
+    invObj = document.getElementById("invbar")
+    document.getElementById("torch").addEventListener("click", clickGrab)
+    document.getElementById("cuffs").addEventListener("click", clickGrab)
+    document.getElementById("keyForm").addEventListener("click", castKey)
     document.getElementById("chest").addEventListener("click", openChest)
+    document.getElementById("hay").addEventListener("click", giveKey)
+    document.getElementById("door").addEventListener("click", openDoor)
 
-    function grabItem(e) {
+    function loadInv() {
+      inventory = JSON.parse(localStorage.getItem('inv'))
+      inventory.forEach((currentValue) => grabItem )
+    }
+
+    function clickGrab(e) {
       item = e.srcElement.getAttribute("src")
       e.srcElement.classList.toggle("hidden")
+      grabItem(item)
+    }
+    
+    function grabItem(item) {
       if (!inventory.includes(item)) {
         inventory.push(item)
-        document.getElementById(inventory.indexOf(item).toString()).style.backgroundImage = `url('${item}')`
+        //document.getElementById(inventory.indexOf(item).toString()).style.backgroundImage = `url('${item}')`
+        //localStorage.setItem('inv', JSON.stringify(inventory));
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${item}')`
+        slot.id = item
+        invObj.appendChild(slot)
         localStorage.setItem('inv', JSON.stringify(inventory));
       }
+    }
+
+    function consume(name) {
+      try {
+        if (inventory.includes(name)) {
+          inventory = inventory.filter(i => i !== name)
+          invObj.removeChild(document.getElementById(name))
+          localStorage.setItem('inv', JSON.stringify(inventory));
+          return true
+        }
+        return false
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+      return false
     }
     
     function openChest(){
       var image = document.getElementById("chest");
-      if (image.src.match("Images/closedChest")) {
+      if (image.src.match("Images/closedChest") && consume("Images/key.png")) {
        image.src = "Images/openChest.png";
+       grabItem("Images/key2.png")
       }
-      else {
-        image.src = "Images/closedChest.png";
+    }
+
+    function castKey() {
+      if (inventory.includes("Images/torch.gif") && inventory.includes("Images/handcuffs.png")) {
+        document.getElementById("keyForm").classList.toggle("hidden")
+        grabItem("Images/key.png")
+      }
+    }
+
+    function giveKey() {
+      grabItem("Images/key3.png")
+    }
+
+    function openDoor() {
+      if (consume("Images/key2.png") && consume("Images/key3.png")) {
+        alert("done")
       }
     }
     
     //Basic messages format, we will have to change later
-    var text = "messages will go here";
+    text = "messages will go here";
     document.getElementById("message").innerHTML = text;
    
   </script>
