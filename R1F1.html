@@ -46,6 +46,8 @@
     width: 75px;
     height: 75px;
     background: white;
+    background-position: center;
+    background-size: cover;
     padding: 5px;
     margin: 10px;
   }
@@ -78,14 +80,11 @@
     <br>
     <p>Items you have collected will appear below:</p>
     <div class="itembar">
-      <div class="itemslot">
-        <p>#1</p><img src="" id="0" width="100px" height="100px">
+      <div class="itemslot" id="0">
       </div>
-      <div class="itemslot">
-        <p>#2</p><img src="" id="1" width="100px" height="100px">
+      <div class="itemslot" id="1">
       </div>
-      <div class="itemslot">
-        <p>#3</p><img src="" id="2" width="100px" height="100px">
+      <div class="itemslot" id="2">
       </div>
     </div>
   </div>
@@ -106,18 +105,18 @@
       e.srcElement.classList.toggle("hidden")
       if (!inventory.includes(item)) {
         inventory.push(item)
-        document.getElementById(inventory.indexOf(item).toString()).src = item
+        document.getElementById(inventory.indexOf(item).toString()).style.backgroundImage = `url('${item}')`
         localStorage.setItem('inv', JSON.stringify(inventory));
       }
     }
     
     function openChest(){
-      var image = document.getElementById("chest").innerHTML;
-      if (image.src.match("closedChest")) {
-       image.src = "openChest.png";
+      var image = document.getElementById("chest");
+      if (image.src.match("Images/closedChest")) {
+       image.src = "Images/openChest.png";
       }
       else {
-        image.src = "closedChest.png";
+        image.src = "Images/closedChest.png";
       }
     }
     
