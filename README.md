@@ -4,5 +4,8 @@ Be sure to view the credits for all images, scenes, and sprites.
 
 THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 -
-1. *We need to move pics into images folder*
-2. *We need to add a responsive layout to keep the images in the proper places*
+1. *move pics into images folder*
+2. *Arrange the room so that the door is on the floor*
+3. *add a responsive layout to keep the images in the proper places*
+4. *add timer*
+5. *Insert messages*
