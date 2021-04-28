@@ -8,4 +8,3 @@ THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 2. *Arrange the room so that the door is on the floor*
 3. *add a responsive layout to keep the images in the proper places*
 4. *add timer*
-5. *Insert messages*
