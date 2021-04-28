@@ -116,12 +116,13 @@
 
     function clickGrab(e) {
       item = e.srcElement.getAttribute("src")
+	    
       //Code to create item name
       counter = item.length
       itemName = "";
       step = 0;
       while (step != 2) {
-	      if (step == 0) {
+	if (step == 0) {
           if (item.charAt(item.length-counter) != "/") {
             counter -= 1;
           }
@@ -131,20 +132,21 @@
           }
         }
         else if (step == 1) {
-        	if (item.charAt(item.length-counter) != ".") {
-    		    var res = item.charAt(item.length-counter);
-    		    itemName = itemName + res;
-        	  counter -= 1;
-          }
+	    if (item.charAt(item.length-counter) != ".") {
+    		var res = item.charAt(item.length-counter);
+    		itemName = itemName + res;
+        	counter -= 1;
+            }
           else {
-        	  step = 2;
+             step = 2;
           }
         }
         else {
-    	    alert('Something went wrong. Please try again.');
+    	   alert('Something went wrong. Please try again.');
         }
       }
       text = itemName;
+	    
       //Final grabItem code
       e.srcElement.classList.toggle("hidden")
       grabItem(item)
