@@ -39,6 +39,8 @@
     background: lightblue;
     margin-left: 10px;
     margin-right: 10px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .itemslot {
     width: 75px;
@@ -67,14 +69,14 @@
     
     <img src="Images/closedChest.png" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
     
-    <img src="Images/handcuffs.png" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;">
+    <img src="Images/handcuffs.png" id="cuffs" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;" class="">
     
     <img src="Images/hay.png" alt="pile of hay" style="height:200px;width:400px;">
   </div>
   <div class="console">
-    <h3 id="messages">messages will go here</h3>
+    <h3 id="message">Goal:</h3>
     <br>
-    <p>View your collected items below:</p>
+    <p>Items you have collected will appear below:</p>
     <div class="itembar">
       <div class="itemslot">
         <p>#1</p><img src="" id="0" width="100px" height="100px">
@@ -95,6 +97,7 @@
     inventory = []
 
     document.getElementById("torch").addEventListener("click", grabItem)
+    document.getElementById("cuffs").addEventListener("click", grabItem)
 
     function grabItem(e) {
       item = e.srcElement.getAttribute("src")
@@ -105,7 +108,10 @@
         localStorage.setItem('inv', JSON.stringify(inventory));
       }
     }
-
+    
+    var text = "messages will go here";
+    document.getElementById("message").innerHTML = text;
+   
   </script>
 </body>
 </html>
