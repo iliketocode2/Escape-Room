@@ -67,7 +67,7 @@
     
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;" class="">
     
-    <img src="Images/closedChest.png" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
+    <img src="Images/closedChest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px" onclick="openChest()">
     
     <img src="Images/handcuffs.png" id="cuffs" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;" class="">
     
@@ -98,6 +98,8 @@
 
     document.getElementById("torch").addEventListener("click", grabItem)
     document.getElementById("cuffs").addEventListener("click", grabItem)
+    document.getElementById("key").addEventListener("click", grabItem)
+    document.getElementById("chest").addEventListener("click", openChest)
 
     function grabItem(e) {
       item = e.srcElement.getAttribute("src")
@@ -109,6 +111,17 @@
       }
     }
     
+    function openChest(){
+      var image = document.getElementById("chest").innerHTML;
+      if (image.src.match("closedChest")) {
+       image.src = "openChest.png";
+      }
+      else {
+        image.src = "closedChest.png";
+      }
+    }
+    
+    //Basic messages format, we will have to change later
     var text = "messages will go here";
     document.getElementById("message").innerHTML = text;
    
