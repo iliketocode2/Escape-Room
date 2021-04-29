@@ -94,7 +94,12 @@
 
     inventory = []
     invObj = document.getElementById("invbar")
-    //document.getElementById("torch").addEventListener("click", clickGrab)
+    document.getElementById("torch").addEventListener("click", clickGrab)
+    document.getElementById("cuffs").addEventListener("click", clickGrab)
+    document.getElementById("keyForm").addEventListener("click", castKey)
+    document.getElementById("chest").addEventListener("click", openChest)
+    document.getElementById("hay").addEventListener("click", giveKey)
+    document.getElementById("door").addEventListener("click", openDoor)
 
     function loadInv() {
       inventory = JSON.parse(localStorage.getItem('inv'))
@@ -157,7 +162,45 @@
       return false
     }
     
-    // WILL FIX THIS -- var text = "You're trapped in some sort of cell! Find a way to escape.";
+    function openChest(){
+      var image = document.getElementById("chest");
+      if (image.src.match("Images/closedChest") && consume("Images/key.png")) {
+       image.src = "Images/openChest.png";
+       text = "You found a key in the chest.";
+       grabItem("Images/key2.png")
+       
+      }
+      else {
+        text = "You do not have the key to open this.";
+      }
+    }
+
+    function castKey() {
+      if (inventory.includes("Images/torch.gif") && consume("Images/handcuffs.png")) {
+        document.getElementById("keyForm").classList.toggle("hidden")
+        grabItem("Images/key.png")
+        text = "You melted the handcuffs using the torch. You now have a key.";
+      }
+      else {
+        text = "You do not have the right materials to create a key.";
+      }
+    }
+
+    function giveKey() {
+      grabItem("Images/key3.png")
+      text = "You found a key in the haystack.";
+    }
+
+    function openDoor() {
+      if (consume("Images/key2.png") && consume("Images/key3.png")) {
+        text = "You have opened the door to the 2nd room.";
+      }
+      else {
+        text = "You need two keys to escape.";
+      }
+    }
+   
+    var text = "You're trapped in some sort of cell! Find a way to escape.";
    
     var time = setInterval(displayMessage, 10);
    
