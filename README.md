@@ -4,7 +4,7 @@ Be sure to view the credits for all images, scenes, and sprites.
 
 THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 -
-1. *Move pics into images folder*
-2. *Arrange the room so that the door is on the floor*
-3. *Add a responsive layout to keep the images in the proper places*
-4. *Add timer*
+1. *Add a responsive layout to keep the images in the proper places*
+2. *Add timer*
+3. *Add credits -- we need to collect all of the img urls*
+4. *Do the rest of the rooms.....*
