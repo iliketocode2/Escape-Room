@@ -92,5 +92,93 @@
     <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;">
 
   </div>
+  <div class="console">
+    <h3 id="info">Goal:</h3>
+    <p>Items you have collected will appear below:</p>
+    <div class="itembar" id="invbar">
+      <!--<div class="itemslot" id="0">-->
+    </div>
+  </div>
+
+  <script>
+    
+    window.onload = function() {
+      loadInv();
+    };
+
+    inventory = []
+    invObj = document.getElementById("invbar")
+    //document.getElementById("torch").addEventListener("click", clickGrab)
+
+    function loadInv() {
+      inventory = JSON.parse(localStorage.getItem('inv'))
+      inventory.forEach(function(a) {
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${a}')`
+        slot.id = a
+        invObj.appendChild(slot)
+        localStorage.setItem('inv', JSON.stringify(inventory));
+      });
+
+    }
+
+    function clear() {
+      localStorage.setItem('inv', []);
+      loadInv()
+    }
+
+    function clickGrab(e) {
+      item = e.srcElement.getAttribute("src")
+      e.srcElement.classList.toggle("hidden")
+      grabItem(item)
+    }
+
+    function nameItem(item) {
+      name = item.match(/(?<=\/).*/g)
+      a = name.match(/(.*)\.[^.]+$/)
+	    return a[1]
+    }
+    
+    function grabItem(item) {
+      if (!inventory.includes(item)) {
+        inventory.push(item)
+        //document.getElementById(inventory.indexOf(item).toString()).style.backgroundImage = `url('${item}')`
+        //localStorage.setItem('inv', JSON.stringify(inventory));
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${item}')`
+        slot.id = item
+        invObj.appendChild(slot)
+        localStorage.setItem('inv', JSON.stringify(inventory));
+      }
+      text = "You found the " + nameItem(item) + ".";
+    }
+
+    function consume(name) {
+      try {
+        if (inventory.includes(name)) {
+          inventory = inventory.filter(i => i !== name)
+          invObj.removeChild(document.getElementById(name))
+          localStorage.setItem('inv', JSON.stringify(inventory));
+          return true
+        }
+        return false
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+      return false
+    }
+   
+    var text = "You're trapped in some sort of cell! Find a way to escape.";
+   
+    var time = setInterval(displayMessage, 10);
+   
+    function displayMessage() {
+      document.getElementById('info').innerHTML = text;
+    }
+   
+  </script>
 </body>
 </html>
