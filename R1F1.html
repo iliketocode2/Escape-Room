@@ -110,8 +110,13 @@
         slot.id = a
         invObj.appendChild(slot)
         localStorage.setItem('inv', JSON.stringify(inventory));
-    });
+      });
 
+    }
+
+    function clear() {
+      localStorage.setItem('inv', []);
+      loadInv()
     }
 
     function clickGrab(e) {
@@ -122,7 +127,7 @@
       itemName = "";
       step = 0;
       while (step != 2) {
-	if (step == 0) {
+	    if (step == 0) {
           if (item.charAt(item.length-counter) != "/") {
             counter -= 1;
           }
@@ -187,8 +192,9 @@
       var image = document.getElementById("chest");
       if (image.src.match("Images/closedChest") && consume("Images/key.png")) {
        image.src = "Images/openChest.png";
-       grabItem("Images/key2.png")
        text = "You found a key in the chest.";
+       grabItem("Images/key2.png")
+       
       }
       else {
         text = "You do not have the key to open this.";
