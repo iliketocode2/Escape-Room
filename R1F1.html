@@ -69,7 +69,7 @@
     
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;" class="">
     
-    <img src="Images/closedChest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px" onclick="openChest()">
+    <img src="Images/closedChest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
     
     <img src="Images/handcuffs.png" id="cuffs" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;" class="">
     
@@ -121,40 +121,14 @@
 
     function clickGrab(e) {
       item = e.srcElement.getAttribute("src")
-	    
-      //Code to create item name
-      counter = item.length
-      itemName = "";
-      step = 0;
-      while (step != 2) {
-	    if (step == 0) {
-          if (item.charAt(item.length-counter) != "/") {
-            counter -= 1;
-          }
-          else {
-            step = 1;
-            counter -= 1;
-          }
-        }
-        else if (step == 1) {
-	    if (item.charAt(item.length-counter) != ".") {
-    		var res = item.charAt(item.length-counter);
-    		itemName = itemName + res;
-        	counter -= 1;
-            }
-          else {
-             step = 2;
-          }
-        }
-        else {
-    	   alert('Something went wrong. Please try again.');
-        }
-      }
-      text = itemName;
-	    
-      //Final grabItem code
       e.srcElement.classList.toggle("hidden")
       grabItem(item)
+    }
+
+    function nameItem(item) {
+      name = item.match(/(?<=\/).*/g)
+      a = name.match(/(.*)\.[^.]+$/)
+	    return a[1]
     }
     
     function grabItem(item) {
@@ -169,7 +143,7 @@
         invObj.appendChild(slot)
         localStorage.setItem('inv', JSON.stringify(inventory));
       }
-      text = "You found the " + itemName + ".";
+      text = "You found the " + nameItem(item) + ".";
     }
 
     function consume(name) {
