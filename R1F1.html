@@ -69,7 +69,7 @@
     
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;" class="">
     
-    <img src="Images/closedChest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
+    <img src="Images/betterchest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;right:50px">
     
     <img src="Images/handcuffs.png" id="cuffs" alt="handcuffs" style="height:80px;width:100px;position:relative;left:10px;" class="">
     
@@ -161,7 +161,7 @@
     
     function openChest(){
       var image = document.getElementById("chest");
-      if (image.src.match("Images/closedChest") && consume("Images/greenkey.png")) {
+      if (image.src.match("Images/betterchest") && consume("Images/greenkey.png")) {
        image.src = "Images/openChest.png";
        text = "You found a key in the chest.";
        grabItem("Images/redkey.png")
@@ -190,6 +190,7 @@
 
     function openDoor() {
       if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
+	
         text = "You have opened the door to the 2nd room.";
       }
       else {
