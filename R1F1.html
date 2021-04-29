@@ -65,7 +65,7 @@
     </div>
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:300px;margin-top:100px;">
     
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;">
+    <img src="Images/lockeddoor.png" id="door" alt="door" style="height:400px;width:350px;">
     
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;float:left;margin-left:200px;" class="">
     
@@ -161,10 +161,10 @@
     
     function openChest(){
       var image = document.getElementById("chest");
-      if (image.src.match("Images/closedChest") && consume("Images/key.png")) {
+      if (image.src.match("Images/closedChest") && consume("Images/greenkey.png")) {
        image.src = "Images/openChest.png";
        text = "You found a key in the chest.";
-       grabItem("Images/key2.png")
+       grabItem("Images/redkey.png")
        
       }
       else {
@@ -175,7 +175,7 @@
     function castKey() {
       if (inventory.includes("Images/torch.gif") && consume("Images/handcuffs.png")) {
         document.getElementById("keyForm").classList.toggle("hidden")
-        grabItem("Images/key.png")
+        grabItem("Images/greenkey.png")
         text = "You melted the handcuffs using the torch. You now have a key.";
       }
       else {
@@ -184,12 +184,12 @@
     }
 
     function giveKey() {
-      grabItem("Images/key3.png")
+      grabItem("Images/bluekey.png")
       text = "You found a key in the haystack.";
     }
 
     function openDoor() {
-      if (consume("Images/key2.png") && consume("Images/key3.png")) {
+      if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
         text = "You have opened the door to the 2nd room.";
       }
       else {
