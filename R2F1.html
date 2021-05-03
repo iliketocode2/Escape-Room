@@ -106,6 +106,7 @@
     <div class="lock hidden" id="lock">
       <div class="lockNum" id="0">0</div>
       <div class="lockNum" id="1">0</div>
+      <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
     </div>
   </div>
   <div class="console">
@@ -128,8 +129,13 @@
 
     document.getElementById("0").addEventListener("click", lockMove)
     document.getElementById("1").addEventListener("click", lockMove)
+    document.getElementById("X").addEventListener("click", toggleThing)
 
     lockArray = [0,0]
+
+    function toggleThing() {
+      document.getElementById("lock").classList.toggle("hidden")
+    }
 
     function lockMove(e) {
       lock = e.srcElement
