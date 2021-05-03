@@ -74,6 +74,20 @@
   .hidden {
     visibility: hidden;
   }
+
+  .lockNum {
+    display:inline;
+    font-size: 100px;
+  }
+  .lock {
+    background-color: whitesmoke;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -webkit-touch-callout : none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
   </style>
 </head>
 <body>
@@ -89,7 +103,10 @@
     <img src="Images/clothing.png" id="shirt" alt="old clothes" style="height:300px;width:200px;">
     <img src="Images/clothing2.png" alt="old clothes" style="height:300px;width:200px;">
     <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;">
-
+    <div class="lock hidden" id="lock">
+      <div class="lockNum" id="0">0</div>
+      <div class="lockNum" id="1">0</div>
+    </div>
   </div>
   <div class="console">
     <h3 id="info">Goal:</h3>
@@ -108,6 +125,20 @@
     inventory = []
     invObj = document.getElementById("invbar")
     document.getElementById("shirt").addEventListener("click", grabRope)
+
+    document.getElementById("0").addEventListener("click", lockMove)
+    document.getElementById("1").addEventListener("click", lockMove)
+
+    lockArray = [0,0]
+
+    function lockMove(e) {
+      lock = e.srcElement
+      lockArray[lock.id] += 1
+      if (lockArray[lock.id] > 9) {
+        lockArray[lock.id] = 0
+      }
+      lock.innerHTML = lockArray[lock.id]
+    }
 
     function loadInv() {
       inventory = JSON.parse(localStorage.getItem('inv'))
