@@ -144,6 +144,9 @@
         lockArray[lock.id] = 0
       }
       lock.innerHTML = lockArray[lock.id]
+      if (lockArray[0] == 7 && lockArray[1] == 2) {
+        console.log("UNlocked")
+      }
     }
 
     function loadInv() {
