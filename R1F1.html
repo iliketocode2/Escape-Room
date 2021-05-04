@@ -88,7 +88,7 @@
     
     <img src="Images/lockeddoor.png" id="door" alt="door" style="height:400px;width:350px;position:relative;left:15%;top:200px;">
     
-    <div class="arrow-right" style="position:relative;left:80%;top:10%;"></div>	  
+    <div class="arrow-right" id="arrow" style="position:relative;left:80%;top:10%;"></div>	  
 	  
     <div class="rec" style="position:relative;left:40%;" id="keyForm">
       <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position:relative;">
@@ -111,6 +111,7 @@
     // https://www.dafont.com/seagram-tfb.font
     // Do DaFont lets gooooooooooooooo
     window.onload = function() {
+	document.getElementById("arrow").style.display = "none";
       loadInv();
     };
 
@@ -221,6 +222,7 @@
 	//Open door thingy
 	var yes = document.getElementById("door");
 	yes.src = "Images/blindingdoor.png";
+	document.getElementById("arrow").style.display = "block";
         text = "You have opened the door to the 2nd room.";
       }
       else {
