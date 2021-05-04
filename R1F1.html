@@ -195,6 +195,9 @@
     function openDoor() {
       if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
 	
+	//Open door thingy
+	var yes = document.getElementById("door");
+	yes.src = "Images/blindingdoor.png";
         text = "You have opened the door to the 2nd room.";
       }
       else {
