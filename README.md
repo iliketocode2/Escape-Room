@@ -4,6 +4,9 @@ Be sure to view the credits for all images, scenes, and sprites.
 
 THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 -
+**Check out the wiki page!**
+-
+
 1. *FInish putting images in the right spots (will)*
 2. *Add timer*
 3. *Add credits -- we need to collect all of the img urls (final step)*
