@@ -4,7 +4,8 @@ Be sure to view the credits for all images, scenes, and sprites.
 
 THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 -
-1. *Add a responsive layout to keep the images in the proper places*
+1. *FInish putting images in the right spots (will)*
 2. *Add timer*
-3. *Add credits -- we need to collect all of the img urls*
-4. *Do the rest of the rooms.....*
+3. *Add credits -- we need to collect all of the img urls (final step)*
+4. *Make the door open when you have finished the puzzles in the first room*
+5. *Do the rest of the rooms.....*
