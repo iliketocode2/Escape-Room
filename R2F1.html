@@ -131,8 +131,8 @@
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
     </div>
 
-    <div class="arrow-right" id="arrow" onclick="move()" style="position:relative;left:90%;top:-200px;"></div>
-    <div class="arrow-left" id="arrow" onclick="move()" style="position:relative;left:10%;top:-200px;"></div>
+    <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-200px;"></div>
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-200px;"></div>
 	 
     <div class="lock hidden" id="lock">
       <div class="lockNum" id="0">0</div>
@@ -150,6 +150,13 @@
 
   <script>
     
+    function moveRight() {
+      window.location.href = "R3F1.html";
+    }
+    function moveLeft() {
+      window.location.href = "R1F1.html";
+    }	  
+	  
     window.onload = function() {
       loadInv();
     };
