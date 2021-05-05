@@ -11,4 +11,5 @@ THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 2. *Add timer*
 3. *Add credits -- we need to collect all of the img urls (final step)*
 4. *Make the door open when you have finished the puzzles in the first room*
-5. *Do the rest of the rooms.....*
+5. *Change the messages in the console for each room -- customize!!!
+6. *Do the rest of the rooms.....*
