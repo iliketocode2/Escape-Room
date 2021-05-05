@@ -20,13 +20,7 @@
     .flowerArea {
       width: 500px;
       height: 200px;
-    }
-    
-    body {
-    height: 100%;
-    margin: 0;
-    text-align: center;
-  }
+	}
   .back{
     background-image: url("Images/cell.jpg");
     height: 100%;
@@ -88,28 +82,58 @@
     -o-user-select: none;
     user-select: none;
   }
+ .arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-left: 10px solid green;
+}
+.arrow-right:hover {
+   border-left: 20px solid lightgreen;
+ }  
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-right:10px solid green;
+}
+.arrow-left:hover {
+   border-right: 20px solid lightgreen;
+ } 
   </style>
 </head>
 <body>
  <div class="back">
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top: 50px;left:-10%;">
+    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:20%;">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:50px;left:10%;">
+    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:40%;">
     
-    <div class="flowerArea" style="position:relative;top:10%;left:25%;">
-      <img src="Images/ledge.png" id="ledge" alt="stone window ledge" style="height:50px;width:200px;position:relative;top:15%;left:35%;">
+    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:50%;">
+    
+    <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:-50%;">
+    
+    <img src="Images/clothing.png" id="shirt" alt="old clothes" style="height:300px;width:200px;position:relative;top:250px;left:-55%;">
+    
+    <img src="Images/clothing2.png" id="shirt2" alt="old clothes" style="height:300px;width:200px;position:relative;top:250px;left:-10%;">
+    
+    <div class="flowerArea" style="position:relative;top:0%;left:27%;">
+      <div class="flowers" style="position:relative;top:12%;left:20%;">
+        <img src="Images/otherwierdflower.png" alt="flower" style="height:100px;width:100px;">
+        <img src="Images/wierdflower.png" alt="flower" style="height:100px;width:100px;">
+      </div>
+	   
+      <img src="Images/ledge.png" id="ledge" alt="stone window ledge" style="height:50px;width:200px;position:relative;top:10%;left:35%;">
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
     </div>
-    
-    <img src="Images/blindingdoor.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:10%;left:-15%;">
-    
-    <img src="Images/clothing.png" id="shirt" alt="old clothes" style="height:300px;width:200px;position:relative;top:10%;left:-13%;">
-    
-    <img src="Images/clothing2.png" alt="old clothes" style="height:300px;width:200px;position:relative;top:10%;left:-12%;">
-    
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:10%;left:15%;">
 
+    <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-200px;"></div>
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-200px;"></div>
+	 
     <div class="lock hidden" id="lock">
       <div class="lockNum" id="0">0</div>
       <div class="lockNum" id="1">0</div>
@@ -126,6 +150,13 @@
 
   <script>
     
+    function moveRight() {
+      window.location.href = "R3F1.html";
+    }
+    function moveLeft() {
+      window.location.href = "R1F1.html";
+    }	  
+	  
     window.onload = function() {
       loadInv();
     };
