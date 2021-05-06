@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html>
 <head>
   <title>Room 3, Floor 1</title>
@@ -55,42 +55,34 @@
   .hidden {
     visibility: hidden;
   }
-.arrow-right {
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  
-  border-left: 10px solid green;
-}
-.arrow-right:hover {
-   border-left: 20px solid lightgreen;
- }
-	  
+
 .arrow-left {
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
   
-  border-right:10px solid green;
+  border-right:30px solid green;
 }
+.arrow-left:hover {
+   border-right: 30px solid lightgreen;
+ }
 	  
   </style>
 </head>
 <body>
   <div class="back">
-    <img src="Images/closet.png" id="closet" alt="wardrobe" style="height:300px;width:200px;position:relative;top:10%;left:-15%;" class="">
+    <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-5%;top:10%;">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
+    <img src="Images/closet.png" id="closet" alt="wardrobe" style="height:300px;width:200px;position:relative;top:10%;left:0%;" class="">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-10%;left:0%;">
     
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;left:15%;top:200px;">
-    
-    <div class="arrow-right" id="arrow" onclick="move()" style="position:relative;left:80%;top:10%;"></div>
+    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:-10%;left:20%;">
 	  
-  
+    <img src="Images/trapdoor.png" id="trapdoor" alt="door" style="height:200px;width:200px;position:relative;left:-15%;top:10%;">
+    
+    <div class="arrow-left" id="arrow" onclick="move()" style="position:relative;left:10%;top:-200px;display:block;"></div>
 
   </div>
   <div class="console">
@@ -110,7 +102,6 @@
     // https://www.dafont.com/seagram-tfb.font
     // Do DaFont lets gooooooooooooooo
     window.onload = function() {
-	    document.getElementById("arrow").style.display = "none";
       loadInv();
     };
 
@@ -215,20 +206,6 @@
       text = "You found a key in the haystack.";
     }
 
-    function openDoor() {
-      if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
-        
-	      //Open door thingy
-	      var yes = document.getElementById("door");
-	      yes.src = "Images/blindingdoor.png";
-	      document.getElementById("arrow").style.display = "block";
-        text = "You have opened the door to the 2nd room.";
-      }
-      else {
-        text = "You need two keys to escape.";
-      }
-    }
-   
     var text = "You're trapped in some sort of cell! Find a way to escape.";
    
     var time = setInterval(displayMessage, 10);
@@ -240,3 +217,9 @@
   </script>
 </body>
 </html>
+
+   
+  
+    
+   
+ 
