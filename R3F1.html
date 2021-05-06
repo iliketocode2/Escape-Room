@@ -72,20 +72,26 @@
 </head>
 <body>
   <div class="back">
-    
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:15%;">
     
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:35%;">
 	  
-    <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-40%;top:100px;">
-    
-    <img src="Images/closet.png" id="closet" alt="wardrobe" style="height:300px;width:200px;position:relative;top:100px;left:-15%;" class="">
+	  <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-30%;top:100px;">
 	  
-    <img src="Images/trapdoor.png" id="trapdoor" alt="door" style="height:200px;width:200px;position:relative;left:10%;top:100px;">
+	  <img src="Images/closet.png" id="closet" alt="wardrobe" style="height:300px;width:200px;position:relative;left:-18%;top:100px;" class="">
+	  
+	  <img src="Images/mineCRAAAAFt.png" id="sign" alt="sign" style="height:200px;width:200px;position:relative;left:5%;top:100px;">
+	  
+    <img src="Images/trapdoor.png" id="trapdoor" alt="door" style="height:200px;width:200px;position:relative;left:5%;top:100px;">
     
-    <div class="arrow-left" id="arrow" onclick="move()" style="position:relative;left:10%;top:-200px;display:block;"></div>
+    <div class="arrow-left" id="arrow" onclick="move()" style="position:relative;left:10%;top:-100px;display:block;"></div>
 
+    <div class="trophy table" style="position:relative;top:-150px;left:15%;">
+      <img src="Images/trophy.png" id="trophy" alt="trophy" style="height:100px;width:100px;position:relative;left:-5%;top:25px;" class="">
+      <img src="Images/table.png" id="table" alt="table" style="height:100px;width:200px;position:relative;top:100px;left:-15%;" class="">
+	  </div>
   </div>
+  
   <div class="console">
     <h3 id="info">Goal:</h3>
     <p>Items you have collected will appear below:</p>
@@ -108,12 +114,6 @@
 
     inventory = []
     invObj = document.getElementById("invbar")
-    document.getElementById("torch").addEventListener("click", clickGrab)
-    document.getElementById("cuffs").addEventListener("click", clickGrab)
-    document.getElementById("keyForm").addEventListener("click", castKey)
-    document.getElementById("chest").addEventListener("click", openChest)
-    document.getElementById("hay").addEventListener("click", giveKey)
-    document.getElementById("door").addEventListener("click", openDoor)
 
     function loadInv() {
       inventory = JSON.parse(localStorage.getItem('inv'))
@@ -190,24 +190,12 @@
       }
     }
 
-    function castKey() {
-      if (inventory.includes("Images/torch.gif") && consume("Images/handcuffs.png")) {
-        document.getElementById("keyForm").classList.toggle("hidden")
-        grabItem("Images/greenkey.png")
-        text = "You melted the handcuffs using the torch. You now have a key.";
-      }
-      else {
-        text = "You do not have the right materials to create a key.";
-      }
-    }
-	  
-//yessssss
     function giveKey() {
       grabItem("Images/bluekey.png")
-      text = "You found a key in the haystack.";
+      text = "You found a key in the trophy.";
     }
 
-    var text = "You're trapped in some sort of cell! Find a way to escape.";
+    var text = "This room seems to be the last room on this floor.";
    
     var time = setInterval(displayMessage, 10);
    
