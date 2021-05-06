@@ -130,7 +130,7 @@
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
     </div>
 
-    <img src="Images/numberchest.png" onclick="showThing()" id="chest" alt="treasure chest" style="height:250px;width:250px;position:relative;top:-150px;left:15%;">
+    <img src="Images/numberchest.png" onclick="text='Cool its a lock with numbers'" id="chest" alt="treasure chest" style="height:250px;width:250px;position:relative;top:-150px;left:15%;">
 	 
     <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-450px;"></div>
     <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-500px;"></div>
@@ -171,13 +171,9 @@
     document.getElementById("0").addEventListener("click", lockMove)
     document.getElementById("1").addEventListener("click", lockMove)
     document.getElementById("X").addEventListener("click", toggleThing)
+    document.getElementById("chest").addEventListener("click", toggleThing)
 
     lockArray = [0,0]
-
-    function showThing() {
-      text = "There's a number lock with two digits on this box."
-      document.getElementById("lockN").classList.toggle("show")
-    }
   
     function toggleThing() {
       document.getElementById("lockN").classList.toggle("hidden")
@@ -192,6 +188,8 @@
       lock.innerHTML = lockArray[lock.id]
       if (lockArray[0] == 7 && lockArray[1] == 2) {
         console.log("UNlocked")
+        toggleThing()
+        text = "You unlocked it gg (it was 72)"
       }
     }
 
