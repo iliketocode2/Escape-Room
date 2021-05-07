@@ -73,9 +73,9 @@
   <div class="back">
     <img src="Images/torch.gif" id="torch" alt="dungeon window" style="height:200px;width:200px;position:relative;top:10%;left:-15%;" class="">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     
     <img src="Images/lockeddoor.png" id="door" alt="door" style="height:400px;width:350px;position:relative;left:15%;top:200px;">
     
@@ -221,6 +221,11 @@
       }
     }
    
+    //console for windows
+    function speak(){
+       text = "You aren't strong enough to break the rusty window bars.";
+    }
+	  
     var text = "You're trapped in some sort of cell! Find a way to escape.";
    
     var time = setInterval(displayMessage, 10);

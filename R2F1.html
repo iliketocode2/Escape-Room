@@ -4,7 +4,7 @@
   <title>Room 2, Floor 1</title>
   <style>
     body {
-      height: 100%;
+      height: 700px;
       margin: 0;
       text-align: center;
     }
@@ -92,7 +92,7 @@
 }
 .arrow-right:hover {
    border-left: 30px solid lightgreen;
- }  
+ }
 .arrow-left {
   width: 0;
   height: 0;
@@ -103,45 +103,48 @@
 }
 .arrow-left:hover {
    border-right: 30px solid lightgreen;
- } 
+ }
   </style>
 </head>
 <body>
  <div class="back">
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:20%;">
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:20%;">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:40%;">
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:40%;">
     
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:50%;">
+    <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:50%;">
     
     <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:-50%;">
     
     <img src="Images/clothing.png" id="shirt" alt="old clothes" style="height:300px;width:200px;position:relative;top:250px;left:-55%;">
     
-    <img src="Images/clothing2.png" id="shirt2" alt="old clothes" style="height:300px;width:200px;position:relative;top:250px;left:-10%;">
+    <img src="Images/clothing2.png" onclick="shirt()" id="shirt2" alt="old clothes" style="height:300px;width:200px;position:relative;top:250px;left:-10%;">
     
-    <div class="flowerArea" style="position:relative;top:0%;left:27%;">
+    <div class="flowerArea" onclick="flowers()" style="position:relative;top:0%;left:27%;">
       <div class="flowers" style="position:relative;top:12%;left:20%;">
         <img src="Images/otherwierdflower.png" alt="flower" style="height:100px;width:100px;">
         <img src="Images/wierdflower.png" alt="flower" style="height:100px;width:100px;">
       </div>
-	   
       <img src="Images/ledge.png" id="ledge" alt="stone window ledge" style="height:50px;width:200px;position:relative;top:10%;left:35%;">
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
       <img src="Images/pot.png" id="pot" alt="plant pot" style="height:80px;width:80px;">
     </div>
 
-    <img src="Images/betterchest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;top:-150px;left:15%;">	 	
+    <img src="Images/numberchest.png" onclick="text='Cool its a lock with numbers'" id="chest" alt="treasure chest" style="height:250px;width:250px;position:relative;top:-150px;left:15%;">
 	 
-    <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-200px;"></div>
-    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-200px;"></div>
+    <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-450px;"></div>
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-500px;"></div>
 	 
-    <div class="lock hidden" id="lock">
+	 <img src="Images/SPEEEEEEARs.png" onclick="spears()" id="spears" alt="rack with spears" style="height:300px;width:200px;position:relative;top:-550px;left:-20%;">
+	   
+	 
+    <div class="lock hidden" id="lockN">
       <div class="lockNum" id="0">0</div>
       <div class="lockNum" id="1">0</div>
       <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
     </div>
   </div>
+  
   <div class="console">
     <h3 id="info">Goal:</h3>
     <p>Items you have collected will appear below:</p>
@@ -157,24 +160,23 @@
     }
     function moveLeft() {
       window.location.href = "R1F1.html";
-    }	  
+    }
 	  
     window.onload = function() {
       loadInv();
     };
 
-    inventory = []
-    invObj = document.getElementById("invbar")
-    document.getElementById("shirt").addEventListener("click", grabRope)
 
+    //code for the number lock
     document.getElementById("0").addEventListener("click", lockMove)
     document.getElementById("1").addEventListener("click", lockMove)
     document.getElementById("X").addEventListener("click", toggleThing)
+    document.getElementById("chest").addEventListener("click", toggleThing)
 
     lockArray = [0,0]
-
+  
     function toggleThing() {
-      document.getElementById("lock").classList.toggle("hidden")
+      document.getElementById("lockN").classList.toggle("hidden")
     }
 
     function lockMove(e) {
@@ -186,9 +188,16 @@
       lock.innerHTML = lockArray[lock.id]
       if (lockArray[0] == 7 && lockArray[1] == 2) {
         console.log("UNlocked")
+        toggleThing()
+        text = "You unlocked it gg (it was 72)"
       }
     }
 
+    //Other stuff
+    inventory = []
+    invObj = document.getElementById("invbar")
+    document.getElementById("shirt").addEventListener("click", grabRope)
+    
     function loadInv() {
       inventory = JSON.parse(localStorage.getItem('inv'))
       inventory.forEach(function(a) {
@@ -201,7 +210,7 @@
       });
 
     }
-
+    
     function clear() {
       localStorage.setItem('inv', []);
       loadInv()
@@ -250,18 +259,32 @@
       return false
     }
 
+    function speak(){
+      text = "You aren't strong enough to break the rusty window bars.";
+    }
+    function spears(){
+      text = "Interesting... This might be helpful later.";
+    }
+    
     function grabRope() {
       grabItem("Images/rope.png")
     }
+    
+    function shirt(){
+      text = "Just some nice old clothing.";
+    }
+    function flowers(){
+      text = "The colors of these flower petals are unusual..."
+    }
    
-    var text = "You're trapped in some sort of cell! Find a way to escape.";
+    var text = "There's a lot of random stuff in this room.";
    
     var time = setInterval(displayMessage, 10);
    
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
-   
+     
   </script>
 </body>
 </html>

@@ -55,6 +55,17 @@
   .hidden {
     visibility: hidden;
   }
+  .arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right:; 40px solid transparent;
+    
+    border-top:40px solid green;
+  }
+  .arrow-up:hover {
+    border-top: 40px solid lightgreen;
+  }
   </style>
 </head>
 <body>
@@ -63,13 +74,17 @@
     
     <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:40%;">
     
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:100px;left:-30%;">
+    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:100px;left:-35%;">
     
     <img src="Images/chess.png" id="chess" alt="chess board" style="height:200px;width:200px;position:relative;top:100px;left:-40%;">
-	  
-    <img src="Images/betterchest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;top:100px;left:-40%;">
     
+    <img src="Images/ladder.png" id="ladder" alt="rope ladder" style="height:300px;width:150px;position:relative;top:-100px;left:15%;">
+    
+     <img src="Images/shapes.png" id="shapes" alt="lock box with holes for shapes" style="height:200px;width:200px;position:relative;top:10opx;left:-40%;">
+     
+      <div class="arrow-up" id="arrow" onclick="move()" style="position:relative;left:88%;top:-300px;display:block;"></div>
   </div>
+  
   <div class="console">
     <h3 id="info">Goal:</h3>
     <p>Items you have collected will appear below:</p>
@@ -79,6 +94,10 @@
   </div>
 
   <script>
+    
+    function move() {
+      window.location.href = "R3F1.html";
+    }
     
     window.onload = function() {
       loadInv();
