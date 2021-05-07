@@ -24,13 +24,6 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .rec {
-    background: gray;
-    border: 1px solid black;
-    border-radius: 5px;
-    height: 40px;
-    width: 80px;
-  }
   .console {
     width: 99%;
     height: 250px;
@@ -62,26 +55,70 @@
   .hidden {
     visibility: hidden;
   }
-
-.arrow-left {
-  width: 0;
-  height: 0;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  
-  border-right:30px solid green;
-}
-.arrow-left:hover {
-   border-right: 30px solid lightgreen;
- }
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    
+    border-right:30px solid green;
+  }
+  .arrow-left:hover {
+    border-right: 30px solid lightgreen;
+  }
+  .rec{
+    width: 450px;
+    height: 200px;
+    border: 3px solid black;
+    border-radius: 5px;
+    background: gray;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .bar{
+    background: black;
+    width:-10px;
+    height:160px;
+    padding:15px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top:5px;
+  }
+  .smallrec{
+    background: lightgray;
+    width:50px;
+    height:5px;
+    padding:15px;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left:-108px;
+  }
 	  
   </style>
 </head>
 <body>
   <div class="back">
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:15%;">
     
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:35%;">
+    <div class="rec" style="position: relative; left:40%;">
+      <div class="bar"></div>
+      <div class="smallrec"></div>
+      <div class="bar"></div>
+      <div class="smallrec"></div>
+      <div class="bar"></div>
+      <div class="smallrec"></div>
+      <div class="bar"></div>
+      <div class="smallrec"></div>
+    </div>
+    
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:15%;">
+    
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:35%;">
 	  
 	  <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-30%;top:100px;">
 	  
@@ -97,6 +134,7 @@
       <img src="Images/trophy.png" id="trophy" alt="trophy" style="height:100px;width:100px;position:relative;left:-5%;top:25px;" class="">
       <img src="Images/table.png" id="table" alt="table" style="height:100px;width:200px;position:relative;top:100px;left:-15%;" class="">
 	  </div>
+	  
   </div>
   
   <div class="console">
@@ -187,6 +225,19 @@
     
     function giveWoodenCircle() {
       grabItem("Images/circle.png")
+    }
+    
+   //console messgaes
+    function speak(){
+       text = "You aren't strong enough to break the rusty window bars.";
+    }
+
+    var text = "This room seems to be the last room on this floor.";
+   
+    var time = setInterval(displayMessage, 10);
+   
+    function displayMessage() {
+      document.getElementById('info').innerHTML = text;
     }
    
   </script>
