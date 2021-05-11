@@ -137,7 +137,7 @@
 	  
 	  <img src="Images/mineCRAAAAFt.png" id="sign" alt="sign" style="height:200px;width:200px;position:relative;left:5%;top:100px;">
 	  
-    <img src="Images/closedtrapdoor.png" onclick="open()" id="trapdoor" alt="door" style="height:300px;width:300px;position:relative;left:5%;top:100px;">
+    <img src="Images/betterclosedtrapdoor.png" onclick="open()" id="trapdoor" alt="door" style="height:300px;width:300px;position:relative;left:5%;top:100px;">
     
     <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
     <div class="arrow-down" id="arrowD" onclick="moveDown()" style="position:relative;left:40%;top:-140px;display:block;"></div>
@@ -169,6 +169,7 @@
     // https://www.dafont.com/seagram-tfb.font
     // Do DaFont lets gooooooooooooooo
     window.onload = function() {
+      document.getElementById("arrowD").style.display = "none";
       loadInv();
     };
 
@@ -245,7 +246,7 @@
 	  
 function open(){
    var variable = document.getElementById("trapdoor");
-   variable.src = "Images/opentrapdoor.png";
+   variable.src = "Images/betteropentrapdoor.png";
    document.getElementById("arrowD").style.display = "block";
    text = "You have opened the trapdoor.";
 }

@@ -12,3 +12,7 @@ THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 3. *Add credits -- we need to collect all of the img urls (final step)*
 4. *Change the messages in the console for each room -- customize!!!
 5. *Do the rest of the rooms.....*
+
+Completed Rooms:
+- Room 1
+- Room 2
