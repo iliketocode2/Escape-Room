@@ -159,25 +159,30 @@
 
   <script>
     
-    document.getElementById("bar0").addEventListener("mousedown", dragStart, false)
-    document.getElementById("bar0").addEventListener("mouseup", dragEnd, false)
-    document.getElementById("bar0").addEventListener("mousemove", drag, false)
+    var activeItem = null;
 
-    document.getElementById("bar1").addEventListener("mousedown", dragStart, false)
-    document.getElementById("bar1").addEventListener("mouseup", dragEnd, false)
-    document.getElementById("bar1").addEventListener("mousemove", drag, false)
-    
     var active = false;
-    var currentX;
-    var currentY;
-    var initialX;
-    var initialY;
-    var xOffset = 0;
-    var yOffset = 0;
+
+    document.getElementById("bar0").addEventListener("mousedown", dragStart, false);
+    document.getElementById("bar0").addEventListener("mouseup", dragEnd, false);
+    document.getElementById("bar0").addEventListener("mousemove", drag, false);
+
+    document.getElementById("bar1").addEventListener("mouseup", dragEnd, false);
+    document.getElementById("bar1").addEventListener("mousedown", dragStart, false);
+    document.getElementById("bar1").addEventListener("mousemove", drag, false);
+
+    document.getElementById("bar2").addEventListener("mousedown", dragStart, false);
+    document.getElementById("bar2").addEventListener("mouseup", dragEnd, false);
+    document.getElementById("bar2").addEventListener("mousemove", drag, false);
+
+    document.getElementById("bar3").addEventListener("mousedown", dragStart, false);
+    document.getElementById("bar3").addEventListener("mouseup", dragEnd, false);
+    document.getElementById("bar3").addEventListener("mousemove", drag, false);
+
+
 
 
     function dragStart(e) {
-      if (e.target !== e.currentTarget) {
         active = true;
 
         // this is the item we are interacting with
@@ -191,58 +196,52 @@
           if (!activeItem.yOffset) {
             activeItem.yOffset = 0;
           }
-        
-      if (e.type === "touchstart") {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-      } else {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-      }
 
-        active = true;
+            console.log("doing something!");
+            activeItem.initialX = e.clientX - activeItem.xOffset;
+            activeItem.initialY = e.clientY - activeItem.yOffset;
+          
+        }
       
     }
 
     function dragEnd(e) {
-      initialX = currentX;
-      initialY = currentY;
+      if (activeItem !== null) {
+        activeItem.initialX = activeItem.currentX;
+        activeItem.initialY = activeItem.currentY;
+      }
 
       active = false;
+      activeItem = null;
     }
 
     function drag(e) {
       if (active) {
-      
-        e.preventDefault();
-      
-        if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX - initialX;
-          currentY = e.touches[0].clientY - initialY;
-        } else {
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
+          activeItem.currentX = e.clientX - activeItem.initialX;
+          activeItem.currentY = e.clientY - activeItem.initialY;
+          e.preventDefault();
+
+        activeItem.xOffset = activeItem.currentX;
+        activeItem.yOffset = activeItem.currentY;
+
+        if (activeItem.currentY <= 0) {
+          activeItem.currentY = 0
+        }
+        console.log(activeItem.currentY)
+        if (activeItem.currentY >= 160) {
+          activeItem.currentY = 160
         }
 
-        xOffset = currentX;
-        yOffset = currentY;
+        //70 0 160 100
 
-        if (currentY <= 0) {
-          currentY = 0
-        }
-
-        if (currentY >= 160) {
-          currentY = 160
-        }
-        
-        console.log(currentY)
-        setTranslate(currentX, currentY, e.srcElement);
+        setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       }
     }
 
     function setTranslate(xPos, yPos, el) {
       el.style.transform = "translate3d(" + 0 + "px, " + yPos + "px, 0)";
     }
+
   
     function moveLeft() {
       window.location.href = "R2F1.html";
