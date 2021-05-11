@@ -73,6 +73,15 @@
   .arrow-up:hover {
     border-top: 40px solid lightgreen;
   }
+  .chessSquare {
+    width: 20px;
+    height: 20px;
+  }
+  .chessSquare2 {
+    width: 20px;
+    height: 20px;
+  }
+		  
   </style>
 </head>
 <body>
@@ -85,8 +94,10 @@
     
     <div>    
       <img src="Images/chess.png" id="chess" alt="chess board" style="height:200px;width:200px;position:relative;top:100px;left:-40%;">
-      <div id="solution" width="25px">a</div>
+      <div id="chessSquare2" onclick="doChess2()"</div>
+      <div id="chessSquare" onclick="doChess()"</div>
     </div>
+	  
     <img src="Images/ladder.png" id="ladder" alt="rope ladder" style="height:300px;width:150px;position:relative;top:-100px;left:15%;">
     
      <img src="Images/shapes.png" id="shapes" alt="lock box with holes for shapes" style="height:200px;width:200px;position:relative;top:10opx;left:-40%;">
@@ -103,7 +114,18 @@
   </div>
 
   <script>
-    
+    function doChess() {
+       var chessy = document.getElementById("chess");
+       chessy.src = "Images/chessselection.png";
+       text = "Good, now put your opponent in mate."; 
+    }
+    function doChess2() {
+       chessy.src = "Images/chesswin.png";
+       text = "Yes!"; 
+       grabItem("Images/purplekey.png")
+       chessy.src = "Images/checkmate.png";
+    }
+	  
     function move() {
       window.location.href = "R3F1.html";
     }
