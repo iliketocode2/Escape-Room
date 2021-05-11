@@ -107,13 +107,13 @@
     
     <div class="rec" style="position: relative; left:40%;">
       <div class="bar"></div>
-      <div class="smallrec"></div>
+      <div class="smallrec" id="bar0"></div>
+      <div class="bar" ></div>
+      <div class="smallrec" id="bar1"></div>
       <div class="bar"></div>
-      <div class="smallrec"></div>
-      <div class="bar"></div>
-      <div class="smallrec"></div>
-      <div class="bar"></div>
-      <div class="smallrec"></div>
+      <div class="smallrec"  id="bar2"></div>
+      <div class="bar" ></div>
+      <div class="smallrec" id="bar3"></div>
     </div>
     
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:15%;">
@@ -146,7 +146,94 @@
   </div>
 
   <script>
-  
+    
+    document.getElementById("bar0").addEventListener("mousedown", dragStart, false)
+    document.getElementById("bar0").addEventListener("mouseup", dragEnd, false)
+    document.getElementById("bar0").addEventListener("mousemove", drag, false)
+
+    document.getElementById("bar1").addEventListener("mousedown", dragStart, false)
+    document.getElementById("bar1").addEventListener("mouseup", dragEnd, false)
+    document.getElementById("bar1").addEventListener("mousemove", drag, false)
+    
+    var active = false;
+    var currentX;
+    var currentY;
+    var initialX;
+    var initialY;
+    var xOffset = 0;
+    var yOffset = 0;
+
+
+    function dragStart(e) {
+      if (e.target !== e.currentTarget) {
+        active = true;
+
+        // this is the item we are interacting with
+        activeItem = e.target;
+
+        if (activeItem !== null) {
+          if (!activeItem.xOffset) {
+            activeItem.xOffset = 0;
+          }
+
+          if (!activeItem.yOffset) {
+            activeItem.yOffset = 0;
+          }
+        
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+
+        active = true;
+      
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      active = false;
+    }
+
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        if (currentY <= 0) {
+          currentY = 0
+        }
+
+        if (currentY >= 160) {
+          currentY = 160
+        }
+        
+        console.log(currentY)
+        setTranslate(currentX, currentY, e.srcElement);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + 0 + "px, " + yPos + "px, 0)";
+    }
+
+
+
     function move() {
       window.location.href = "R2F1.html";
     }
