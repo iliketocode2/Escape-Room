@@ -11,7 +11,7 @@
     font-family: UwU;
   }
     body {
-      height: 700px;
+      height: 800px;
       margin: 0;
       text-align: center;
     }
@@ -104,6 +104,12 @@
 </head>
 <body>
  <div class="back">
+    <div class="lock hidden" id="lockN">
+      <div class="lockNum" id="0">0</div>
+      <div class="lockNum" id="1">0</div>
+      <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
+    </div>	 
+	 
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:20%;">
     
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:40%;">
@@ -132,12 +138,6 @@
 	 
 	 <img src="Images/SPEEEEEEARs.png" onclick="spears()" id="spears" alt="rack with spears" style="height:300px;width:200px;position:relative;top:-550px;left:-20%;">
 	   
-	 
-    <div class="lock hidden" id="lockN">
-      <div class="lockNum" id="0">0</div>
-      <div class="lockNum" id="1">0</div>
-      <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
-    </div>
   </div>
   
   <div class="console">
