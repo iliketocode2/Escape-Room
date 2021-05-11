@@ -66,6 +66,17 @@
   .arrow-left:hover {
     border-right: 30px solid lightgreen;
   }
+  .arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right:; 40px solid transparent;
+    
+    border-bottom:40px solid green;
+  }
+  .arrow-down:hover {
+    border-bottom: 40px solid lightgreen;
+  }
   .rec{
     width: 450px;
     height: 200px;
@@ -128,7 +139,8 @@
 	  
     <img src="Images/closedtrapdoor.png" onclick="open()" id="trapdoor" alt="door" style="height:300px;width:300px;position:relative;left:5%;top:100px;">
     
-    <div class="arrow-left" id="arrow" onclick="move()" style="position:relative;left:10%;top:-100px;display:block;"></div>
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
+    <div class="arrow-down" id="arrowD" onclick="moveDown()" style="position:relative;left:40%;top:-140px;display:block;"></div>
 
     <div class="trophy table" style="position:relative;top:-150px;left:15%;">
       <img src="Images/trophy.png" id="trophy" alt="trophy" style="height:100px;width:100px;position:relative;left:-5%;top:25px;" class="">
@@ -147,8 +159,11 @@
 
   <script>
   
-    function move() {
+    function moveLeft() {
       window.location.href = "R2F1.html";
+    }
+    function moveDown() {
+      window.location.href = "R3F2.html";
     }
   
     // https://www.dafont.com/seagram-tfb.font
@@ -231,6 +246,7 @@
 function open(){
    var variable = document.getElementById("trapdoor");
    variable.src = "Images/opentrapdoor.png";
+   document.getElementById("arrowD").style.display = "block";
    text = "You have opened the trapdoor.";
 }
 	  
