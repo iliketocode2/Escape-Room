@@ -3,8 +3,15 @@
 <head>
   <title>Room 2, Floor 1</title>
   <style>
+    @font-face {
+        font-family: "UwU";
+        src: url("Images/Seagram\ tfb.ttf");
+  }
+  * {
+    font-family: UwU;
+  }
     body {
-      height: 700px;
+      height: 800px;
       margin: 0;
       text-align: center;
     }
@@ -74,10 +81,13 @@
     font-size: 100px;
   }
   .lock {
+    position: sticky;    
+    top: 250px;  
+    z-index: 100;
     background-color: whitesmoke;
     -webkit-user-select: none;
     -khtml-user-select: none;
-    -webkit-touch-callout : none;
+    -webkit-touch-calout : none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
@@ -93,26 +103,21 @@
 .arrow-right:hover {
    border-left: 30px solid lightgreen;
  }
-.arrow-left {
-  width: 0;
-  height: 0;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  
-  border-right:30px solid green;
-}
-.arrow-left:hover {
-   border-right: 30px solid lightgreen;
- }
   </style>
 </head>
 <body>
  <div class="back">
+    <div class="lock hidden" id="lockN">
+      <div class="lockNum" id="0">0</div>
+      <div class="lockNum" id="1">0</div>
+      <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
+    </div>	 
+	 
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:20%;">
     
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-5%;left:40%;">
     
-    <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:50%;">
+    <img src="Images/door.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:50%;">
     
     <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;top:200px;left:-50%;">
     
@@ -133,16 +138,9 @@
     <img src="Images/numberchest.png" onclick="text='Cool its a lock with numbers'" id="chest" alt="treasure chest" style="height:250px;width:250px;position:relative;top:-150px;left:15%;">
 	 
     <div class="arrow-right" id="arrow" onclick="moveRight()" style="position:relative;left:90%;top:-450px;"></div>
-    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-500px;"></div>
 	 
 	 <img src="Images/SPEEEEEEARs.png" onclick="spears()" id="spears" alt="rack with spears" style="height:300px;width:200px;position:relative;top:-550px;left:-20%;">
 	   
-	 
-    <div class="lock hidden" id="lockN">
-      <div class="lockNum" id="0">0</div>
-      <div class="lockNum" id="1">0</div>
-      <div class="lockNum" style="font-size: 50px;" id="X"> X</div>
-    </div>
   </div>
   
   <div class="console">
@@ -189,7 +187,8 @@
       if (lockArray[0] == 7 && lockArray[1] == 2) {
         console.log("UNlocked")
         toggleThing()
-        text = "You unlocked it gg (it was 72)"
+        text = "You unlocked the box (the code was 72)."
+        grabItem("Images/bagocoins.png")
       }
     }
 
