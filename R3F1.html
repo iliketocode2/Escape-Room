@@ -246,7 +246,7 @@
           console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA")
           grabItem("Images/goldenmanshook.png")
           document.getElementById("puzzl").classList.toggle("hidden")
-	  document.getElementById("closet").src("Images/opencloset.png")
+	  document.getElementById("closet").src = "Images/opencloset.png";
         }
 
         setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
