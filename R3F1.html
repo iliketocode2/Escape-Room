@@ -110,13 +110,16 @@
     flex-wrap: wrap;
     margin-left:-108px;
   }
+  .hidden {
+    visibility: hidden;
+  }
 	  
   </style>
 </head>
 <body>
   <div class="back">
     
-    <div class="rec" style="position: relative; left:40%;">
+    <div class="rec" id="puzzl" style="position: relative; left:40%;">
       <div class="bar"></div>
       <div class="smallrec" id="bar0"></div>
       <div class="bar" ></div>
@@ -162,6 +165,9 @@
     var activeItem = null;
 
     var active = false;
+
+    arrayOfThings = [0,0,0,0]
+    wiggleroom = 20
 
     document.getElementById("bar0").addEventListener("mousedown", dragStart, false);
     document.getElementById("bar0").addEventListener("mouseup", dragEnd, false);
@@ -215,6 +221,9 @@
       activeItem = null;
     }
 
+    approxeq = (v1, v2, epsilon = 0.001) => Math.abs(v1 - v2) <= epsilon;
+
+
     function drag(e) {
       if (active) {
           activeItem.currentX = e.clientX - activeItem.initialX;
@@ -227,12 +236,17 @@
         if (activeItem.currentY <= 0) {
           activeItem.currentY = 0
         }
-        console.log(activeItem.currentY)
         if (activeItem.currentY >= 160) {
           activeItem.currentY = 160
         }
 
-        //70 0 160 100
+        arrayOfThings[parseInt(e.srcElement.id.split("bar")[1])] = activeItem.currentY;
+
+        if (approxeq(arrayOfThings[0],70,wiggleroom) && approxeq(arrayOfThings[1],0,wiggleroom) && approxeq(arrayOfThings[2],160,wiggleroom) && approxeq(arrayOfThings[3],100,wiggleroom)) {
+          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA")
+          grabItem("Images/goldenmanshook.png")
+          document.getElementById("puzzl").classList.toggle("hidden")
+        }
 
         setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       }
@@ -337,10 +351,12 @@
     
 	  
   function openIt(){
+    if (inventory.includes("Images/goldenmanshook.png") && inventory.includes("Images/rope.png")) {
     var variable = document.getElementById("trapdoor");
     variable.src = "Images/betteropentrapdoor.png";
     text = "You have opened the trapdoor.";
     document.getElementById("arrowD").style.display = "block";
+    }
   }
 	  
    //console messgaes
