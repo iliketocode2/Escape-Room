@@ -112,6 +112,7 @@
     <img src="Images/betterbarrel.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:0px;left:200px;">
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
 
   </div>
   <div class="console">
@@ -239,6 +240,9 @@
       }
     }
    
+   function moveLeft() {
+      window.location.href = "R1F2.html";
+    }
     //console for windows
     function speak(){
        text = "You aren't strong enough to break the rusty window bars.";
