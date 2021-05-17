@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Room 1, Floor 1</title>
+  <title>Room 2, Floor 2</title>
   <style>
     @font-face {
         font-family: "UwU";
@@ -73,53 +73,44 @@
 .arrow-right:hover {
    border-left: 30px solid lightgreen;
  }
+
  .rec{
-    width: 450px;
+    width: 400x;
     height: 200px;
     border: 3px solid black;
     border-radius: 5px;
     background: gray;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-    flex-wrap: wrap;
   }
   .bar{
-    background: black;
-    width:-20px;
-    height:20px;
-    padding:15px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top:5px;
-  }
-  .smallrec{
-    background: lightgray;
-    width:50px;
-    height:5px;
-    padding:15px;
-    border: 2px solid black;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left:-108px;
+    width: 50px;
+    height: 50px;
+    background: red;
+    border: 3px solid black;
+    border-radius: 25px;
   }
 	  
   </style>
 </head>
 <body>
   <div class="back">
-    <div class="rec" id="puzzl" style="position: relative; left:40%;">
+    <div class="rec" id="lock">
       <div class="bar"></div>
       <div class="bar" ></div>
       <div class="bar"></div>
       <div class="bar" ></div>
-      
+    </div>
+    <div class="rec" id="lock">
+      <div class="bar"></div>
+      <div class="bar" ></div>
+      <div class="bar"></div>
+      <div class="bar" ></div>
     </div>
 
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
     <img src="Images/colorlock.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/betterbarrel.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
     
   </div>
   <div class="console">
@@ -251,6 +242,28 @@
        text = "You aren't strong enough to break the rusty window bars.";
     }
 	  
+    //Code for talking to the gaurd
+    var go = 0;
+
+    function changeVarYes(){
+      go = 1;
+      text = "These coins might do... If you give them to me, I'll let you through.";
+      alert("If you are willing to give your coins to the gaurd, click 'continue'. Otherwise, click 'cancel.'");
+      consume("Images/bagocoins.png");
+    }
+    function changeVarNo(){
+      go = 1;
+      text = "Don't return until you have something to give me";
+
+    }
+    function talk() {
+      while (go != 1) {
+        text = "Hello, prisoner. If you wish to make it out of here alive, I need some payment. Do you have any valuables to give me?";
+        document.getElementById("button").style.display = "block";
+        document.getElementById("button1").style.display = "block";
+      }
+    }
+
     var text = "Ah! There's somebody else in this room!";
    
     var time = setInterval(displayMessage, 10);
