@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room 1, Floor 2</title>
+  <style>
+    @font-face {
+        font-family: "UwU";
+        src: url("Images/Seagram\ tfb.ttf");
+  }
+  * {
+    font-family: UwU;
+  }
+  body {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  .back{
+    background-image: url("Images/cell.jpg");
+    height: 100%;
+  
+    /* Center and scale the image*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .rec {
+    background: gray;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+  }
+  .console {
+    width: 99%;
+    height: 250px;
+    background: skyblue;
+    text-align: left;
+    padding: 10px;
+  }
+  .itembar {
+    width: 98%;
+    height: 100px;
+    border: 3px solid blue;
+    border-radius: 5px;
+    background: lightblue;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .itemslot {
+    width: 75px;
+    height: 75px;
+    background: white;
+    background-position: center;
+    background-size: cover;
+    padding: 5px;
+    margin: 10px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  
+  border-left: 30px solid green;
+}
+.arrow-right:hover {
+   border-left: 30px solid lightgreen;
+ }
+	  
+  </style>
+</head>
+<body>
+  <div class="back">
+  
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
+    
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    
+  </div>
+  <div class="console">
+    <h3 id="info">Goal:</h3>
+    <p>Items you have collected will appear below:</p>
+    <div class="itembar" id="invbar">
+      <!--<div class="itemslot" id="0">-->
+    </div>
+  </div>
+
+  <script>
+    // https://www.dafont.com/seagram-tfb.font
+    // Do DaFont lets gooooooooooooooo
+    window.onload = function() {
+	document.getElementById("arrow").style.display = "none";
+      loadInv();
+    };
+
+    inventory = []
+    invObj = document.getElementById("invbar")
+    
+    function loadInv() {
+      inventory = JSON.parse(localStorage.getItem('inv'))
+      inventory.forEach(function(a) {
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${a}')`
+        slot.id = a
+        invObj.appendChild(slot)
+        localStorage.setItem('inv', JSON.stringify(inventory));
+      });
+
+    }
+
+    function clear() {
+      localStorage.setItem('inv', []);
+      loadInv()
+    }
+
+    function clickGrab(e) {
+      item = e.srcElement.getAttribute("src")
+      e.srcElement.classList.toggle("hidden")
+      grabItem(item)
+    }
+
+    function nameItem(item) {
+      name = item.match(/(?<=\/).*/g)
+      a = name.match(/(.*)\.[^.]+$/)
+	    return a[1]
+    }
+    
+    function grabItem(item) {
+      if (!inventory.includes(item)) {
+        inventory.push(item)
+        //document.getElementById(inventory.indexOf(item).toString()).style.backgroundImage = `url('${item}')`
+        //localStorage.setItem('inv', JSON.stringify(inventory));
+        slot = document.createElement("div")
+        slot.classList.toggle("itemslot")
+        slot.style.backgroundImage = `url('${item}')`
+        slot.id = item
+        invObj.appendChild(slot)
+        localStorage.setItem('inv', JSON.stringify(inventory));
+      }
+      text = "You found the " + nameItem(item) + ".";
+    }
+
+    function consume(name) {
+      try {
+        if (inventory.includes(name)) {
+          inventory = inventory.filter(i => i !== name)
+          invObj.removeChild(document.getElementById(name))
+          localStorage.setItem('inv', JSON.stringify(inventory));
+          return true
+        }
+        return false
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+      return false
+    }
+    
+    function openChest(){
+      var image = document.getElementById("chest");
+      if (consume("Images/greenkey.png") && image.src.match("Images/betterchest")) {
+        image.src = "Images/openChest.png";
+      }
+      if (image.src.match("Images/openChest.png")) {
+       text = "You found a key in the chest.";
+       grabItem("Images/redkey.png")
+      }
+      else {
+        text = "You do not have the key to open this.";
+      }
+    }
+
+    function castKey() {
+      if (inventory.includes("Images/torch.gif") && consume("Images/handcuffs.png")) {
+        document.getElementById("keyForm").classList.toggle("hidden")
+        grabItem("Images/greenkey.png")
+        text = "You melted the handcuffs using the torch. You now have a key.";
+      }
+      else {
+        text = "You do not have the right materials to create a key.";
+      }
+    }
+	  
+//yessssss
+    function giveKey() {
+      grabItem("Images/bluekey.png")
+      text = "You found a key in the haystack.";
+    }
+
+    function openDoor() {
+      if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
+	
+	//Open door thingy
+	var yes = document.getElementById("door");
+	yes.src = "Images/blindingdoor.png";
+	document.getElementById("arrow").style.display = "block";
+        text = "You have opened the door to the 2nd room.";
+      }
+      else {
+        text = "You need two keys to escape.";
+      }
+    }
+   
+    //console for windows
+    function speak(){
+       text = "You aren't strong enough to break the rusty window bars.";
+    }
+	  
+    var text = "Ah! There's somebody else in this room!";
+   
+    var time = setInterval(displayMessage, 10);
+   
+    function displayMessage() {
+      document.getElementById('info').innerHTML = text;
+    }
+   
+  </script>
+  <audio controls loop autoplay hidden>
+    <source src="Music/R2F2Music.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
