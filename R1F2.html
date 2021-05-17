@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Room 1, Floor 1</title>
+  <title>Room 1, Floor 2</title>
   <style>
     @font-face {
         font-family: "UwU";
@@ -73,52 +73,14 @@
 .arrow-right:hover {
    border-left: 30px solid lightgreen;
  }
- .rec{
-    width: 450px;
-    height: 200px;
-    border: 3px solid black;
-    border-radius: 5px;
-    background: gray;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .bar{
-    background: black;
-    width:-20px;
-    height:20px;
-    padding:15px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top:5px;
-  }
-  .smallrec{
-    background: lightgray;
-    width:50px;
-    height:5px;
-    padding:15px;
-    border: 2px solid black;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left:-108px;
-  }
 	  
   </style>
 </head>
 <body>
   <div class="back">
-    <div class="rec" id="puzzl" style="position: relative; left:40%;">
-      <div class="bar"></div>
-      <div class="bar" ></div>
-      <div class="bar"></div>
-      <div class="bar" ></div>
-      
-    </div>
-
+  
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
-    <img src="Images/colorlock.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     
   </div>
@@ -132,6 +94,7 @@
 
   <script>
     // https://www.dafont.com/seagram-tfb.font
+    // Do DaFont lets gooooooooooooooo
     window.onload = function() {
 	document.getElementById("arrow").style.display = "none";
       loadInv();
