@@ -92,8 +92,6 @@
     
     <div>    
       <img src="Images/chess.png" id="chess" alt="chess board" style="height:200px;width:200px;position:relative;top:100px;left:-40%;">
-      <div id="chessSquare2" onclick="doChess2()"></div>
-      <div id="chessSquare" onclick="doChess()"></div>
     </div>
 	  
     <img src="Images/ladder.png" id="ladder" alt="rope ladder" style="height:300px;width:150px;position:relative;top:-100px;left:15%;">
@@ -110,18 +108,7 @@
   </div>
 
   <script>
-    function doChess() {
-       var chessy = document.getElementById("chess");
-       chessy.src = "Images/chessselection.png";
-       text = "Good, now put your opponent in mate."; 
-    }
-    function doChess2() {
-       chessy.src = "Images/chesswin.png";
-       text = "Yes!"; 
-       grabItem("Images/purplekey.png")
-       chessy.src = "Images/checkmate.png";
-    }
-	  
+
     function move() {
       window.location.href = "R3F1.html";
     }
@@ -146,6 +133,33 @@
       });
 
     }
+
+    document.getElementById("chess").addEventListener("click", chess)
+    function chess(e) {
+      board = e.srcElement
+      if (board.getAttribute("src") == "Images/chess.png") {
+        board.src = "Images/chessselction.png"
+      }
+      else if (board.getAttribute("src") == "Images/chessselction.png") {
+        board.src = "Images/checkmate.png"
+        grabItem("Images/woodrhombus.png")
+        grabItem("Images/woodensuare.png")
+        grabItem("Images/purplekey.png")
+      } 
+
+    }
+
+    document.getElementById("shapes").addEventListener("click", shapes)
+    function shapes() {
+      if (inventory.includes("Images/triangle.png") && inventory.includes("Images/woodrhombus.png") && inventory.includes("Images/woodensuare.png") && inventory.includes("Images/circle.png")) {
+        consume("Images/triangle.png")
+        consume("Images/circle.png")
+        consume("Images/woodrhombus.png")
+        consume("Images/woodensuare.png")
+        grabItem("chisel.png")
+      }
+    }
+
 
     function clear() {
       localStorage.setItem('inv', []);
