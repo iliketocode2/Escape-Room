@@ -77,41 +77,55 @@
   .arrow-down:hover {
     border-bottom: 40px solid lightgreen;
   }
+  
   .rec{
-    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
     height: 200px;
     border: 3px solid black;
     border-radius: 5px;
     background: gray;
     margin-left: 10px;
     margin-right: 10px;
-    display: flex;
-    flex-wrap: wrap;
   }
   .bar{
-    background: black;
-    width:-10px;
-    height:160px;
-    padding:15px;
     display: flex;
+    position:absolute;
     flex-wrap: wrap;
-    margin-left: 50px;
-    margin-right: 50px;
+    background: black;
+    width:15px;
+    height:180px;
+    padding:5px;
     margin-top:5px;
+    margin-left: 40px;
   }
   .smallrec{
+    position:absolute;
+    display: flex;
+    flex-wrap: wrap;
     background: lightgray;
     width:50px;
     height:5px;
     padding:15px;
     border: 2px solid black;
     border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left:-108px;
+    margin-left:10px;
+    margin-top: 5px;
+  }
+  .show {
+    visibility: visible;
   }
   .hidden {
     visibility: hidden;
+  }
+  .lockNum {
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    background: red;
+    border: 3px solid black;
+    border-radius: 5px;
   }
 	  
   </style>
@@ -119,15 +133,17 @@
 <body>
   <div class="back">
     
-    <div class="rec" id="puzzl" style="position: relative; left:40%;">
+    <div class="rec" id="puzzl" style="position: absolute; left:40%;">
+      <div class="smallrec" id="bar0" style="z-index: 1;"></div>
       <div class="bar"></div>
-      <div class="smallrec" id="bar0"></div>
-      <div class="bar" ></div>
-      <div class="smallrec" id="bar1"></div>
-      <div class="bar"></div>
-      <div class="smallrec"  id="bar2"></div>
-      <div class="bar" ></div>
-      <div class="smallrec" id="bar3"></div>
+      <div class="smallrec" id="bar1" style="z-index: 1; margin-left: 110px;"></div>
+      <div class="bar" style="margin-left: 140px;"></div>
+      <div class="smallrec"  id="bar2" style="z-index: 1; margin-left: 200px;"></div>
+      <div class="bar" style="margin-left: 230px;"></div>
+      <div class="smallrec" id="bar3" style="z-index: 1; margin-left: 300px;"></div>
+      <div class="bar" style="margin-left: 330px;"></div>
+      
+      <div class="lockNum" style="position:relative;margin-left:400px" id="X">X</div>
     </div>
     
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:15%;">
@@ -136,7 +152,7 @@
 	  
 	  <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-30%;top:100px;">
 	  
-	  <img src="Images/lockedclosedcloset.png" onclick="showLock()" id="closet" alt="wardrobe" style="height:250px;width:250px;position:relative;left:-17%;top:100px;" class="">
+	  <img src="Images/lockedclosedcloset.png" id="closet" alt="wardrobe" style="height:250px;width:250px;position:relative;left:-17%;top:100px;" class="">
 	  
 	  <img src="Images/bettersign.png" onclick="tell()" id="sign" alt="sign" style="height:200px;width:200px;position:relative;left:5%;top:100px;">
 	  
@@ -161,7 +177,6 @@
   </div>
 
   <script>
-    document.getElementById("puzzl").style.display = "none";
     
     var activeItem = null;
 
@@ -187,6 +202,17 @@
     document.getElementById("bar3").addEventListener("mousemove", drag, false);
 
 
+    //Show and hide the lock
+    document.getElementById("X").addEventListener("click", toggleThing)
+    document.getElementById("closet").addEventListener("click", showThing)
+
+    function toggleThing() {
+      document.getElementById("puzzl").classList.toggle("hidden")
+    }
+    function showThing(){
+  	  document.getElementById("puzzl").classList.toggle("hidden")
+	    text = "There's a lock with four sliders on this wardrobe.";
+	  }
 
 
     function dragStart(e) {
@@ -264,10 +290,6 @@
 	function tell2(){
 	   text = "There's nothing special about this table.";
 	}
-  	function showLock(){
-	    text = "There's a lock with four sliders on this wardrobe.";
-	    document.getElementById("puzzl").style.display = "block";
-	  }
 	  
     function moveLeft() {
       window.location.href = "R2F1.html";
@@ -378,15 +400,12 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
-    a=true
-  function play() {
-    if (a) {
-      var audio = new Audio('Music/R3F1Music.mp3');audio.loop=true;
-      audio.play();
-      a=false
-    }
+    function play() {
+    var audio = new Audio('Music/R3F1Music.mp3');
+    audio.play();
   }
   document.addEventListener("click", play)
+
   </script>
 </body>
 </html>
