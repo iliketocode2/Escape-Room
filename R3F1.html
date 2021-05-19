@@ -136,16 +136,16 @@
 	  
 	  <img src="Images/blindingdoor.png" id="opendoor" alt="door" style="height:400px;width:350px;position:relative;left:-30%;top:100px;">
 	  
-	  <img src="Images/closedcloset.png" onclick="showLock()" id="closet" alt="wardrobe" style="height:300px;width:200px;position:relative;left:-18%;top:100px;" class="">
+	  <img src="Images/lockedclosedcloset.png" onclick="showLock()" id="closet" alt="wardrobe" style="height:250px;width:250px;position:relative;left:-17%;top:100px;" class="">
 	  
 	  <img src="Images/bettersign.png" onclick="tell()" id="sign" alt="sign" style="height:200px;width:200px;position:relative;left:5%;top:100px;">
 	  
-    <img src="Images/betterclosedtrapdoor.png" id="trapdoor" alt="door" onclick="openIt()" style="height:300px;width:300px;position:relative;left:5%;top:100px;">
+    <img src="Images/betterclosedtrapdoor.png" id="trapdoor" alt="door" onclick="openIt()" style="height:300px;width:300px;position:relative;left:5%;top:200px;">
     
     <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
     <div class="arrow-down" id="arrowD" onclick="moveDown()" style="position:relative;left:80%;top:-140px;display:block;"></div>
 
-    <div class="trophy table" style="position:relative;top:-150px;left:15%;">
+    <div class="trophy table" style="position:relative;top:-150px;left:12%;">
       <img src="Images/trophy.png" id="trophy" alt="trophy" style="height:100px;width:100px;position:relative;left:-5%;top:25px;" class="">
       <img src="Images/table.png" onclick="tell2()" id="table" alt="table" style="height:100px;width:200px;position:relative;top:100px;left:-15%;" class="">
 	  </div>
@@ -161,6 +161,7 @@
   </div>
 
   <script>
+    document.getElementById("puzzl").style.display = "none";
     
     var activeItem = null;
 
@@ -258,14 +259,15 @@
     }
 
 	function tell(){
-	   text = "This old sign has the word 'knight' on it...";
+	   text = "This old sign has the word 'school' on it with addition signs between each letter...";
 	}
 	function tell2(){
 	   text = "There's nothing special about this table.";
 	}
   	function showLock(){
-	   text = "There's a lock with four sliders on this wardrobe.";
-	}
+	    text = "There's a lock with four sliders on this wardrobe.";
+	    document.getElementById("puzzl").style.display = "block";
+	  }
 	  
     function moveLeft() {
       window.location.href = "R2F1.html";
@@ -353,10 +355,14 @@
 	  
   function openIt(){
     if (inventory.includes("Images/goldenmanshook.png") && inventory.includes("Images/rope.png")) {
-    var variable = document.getElementById("trapdoor");
-    variable.src = "Images/betteropentrapdoor.png";
-    text = "You have opened the trapdoor.";
-    document.getElementById("arrowD").style.display = "block";
+      var variable = document.getElementById("trapdoor");
+      variable.src = "Images/betteropentrapdoor.png";
+      text = "You have use the hook and rope to make a rope ladder. The trapdoor is open to the second floor.";
+      document.getElementById("arrowD").style.display = "block";
+      
+      //use items
+      consume("Images/goldenmanshook.png")
+      consume("Images/rope.png")
     }
   }
 	  
