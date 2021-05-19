@@ -81,6 +81,17 @@
     width: 20px;
     height: 20px;
   }
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+  
+    border-right: 30px solid green;
+  }
+  .arrow-left:hover {
+    border-right: 30px solid lightgreen;
+  }
 		  
   </style>
 </head>
@@ -93,6 +104,7 @@
     <img src="Images/chess.png" onclick="text='Hmm... a chess puzzle. I hope my elo is high enough to solve this.'" id="chess" alt="chess board" style="height:200px;width:200px;position:relative;top:100px;left:-45%;">
     <img src="Images/shapes.png" onclick="text='This wooden box has four slots for different shapes. I wonder where those might be...'" id="shapes" alt="lock box with holes for shapes" style="height:200px;width:200px;position:relative;top:150px;left:-30%;">
     <div class="arrow-up" id="arrow" onclick="move()" style="position:relative;left:88%;top:-300px;display:block;"></div>
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-150px;"></div>
   </div>
   
   <div class="console">
@@ -107,6 +119,9 @@
 
     function move() {
       window.location.href = "R3F1.html";
+    }
+    function moveLeft() {
+      window.location.href = "R2F2.html";
     }
     
     window.onload = function() {
