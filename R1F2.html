@@ -80,8 +80,10 @@
   <div class="back">
   
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
-    
+    <img src="Images/ultimatesword.png" onclick="text='A cool sword... could this be escalibur? It appears to be attached to the wall with an iron bar.'" alt="sword" style="height:200px;width:100px; position:relative;top:0%;left:10%;">
+    <img src="Images/betterchest.png" onclick="text='You need a purple key to unlock this chest.'" alt="chest" style="height:150px;width:200px;position:relative;top:0%;left:-10%;">	  
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/portaldoor.png" onclick="text='The door to the drawbridge... Do you have the materials you need to force the drawbridge down?'" alt="portal door" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
     
   </div>
   <div class="console">
@@ -214,7 +216,7 @@
        text = "You aren't strong enough to break the rusty window bars.";
     }
 	  
-    var text = "Ah! There's somebody else in this room!";
+    var text = "The armoury. It looks like the drawbridge can be accesed from here.";
    
     var time = setInterval(displayMessage, 10);
    

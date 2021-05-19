@@ -93,25 +93,27 @@
 </head>
 <body>
   <div class="back">
-    <div class="rec" id="lock">
-      <div class="bar"></div>
-      <div class="bar" ></div>
-      <div class="bar"></div>
-      <div class="bar" ></div>
+    <div class="rec hidden" id="lock">
+      <div class="bar" id="color0"></div>
+      <div class="bar" id="color1"></div>
+      <div class="bar" id="color2"></div>
+      <div class="bar" id="color3"></div>
     </div>
-    <div class="rec" id="lock">
-      <div class="bar"></div>
-      <div class="bar" ></div>
-      <div class="bar"></div>
-      <div class="bar" ></div>
+    <div class="rec hidden" id="lock1">
+      <div class="bar" id="color4"></div>
+      <div class="bar" id="color5"></div>
+      <div class="bar" id="color6"></div>
+      <div class="bar" id="color7"></div>
     </div>
 
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
-    <img src="Images/colorlock.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/colorlock.png" onclick="showthing()" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/betterbarrel.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
-    
+    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:0px;left:200px;">
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
+
   </div>
   <div class="console">
     <h3 id="info">Goal:</h3>
@@ -122,9 +124,10 @@
   </div>
 
   <script>
+    g = 0
     // https://www.dafont.com/seagram-tfb.font
     window.onload = function() {
-	document.getElementById("arrow").style.display = "none";
+	    document.getElementById("arrow").style.display = "none";
       loadInv();
     };
 
@@ -142,6 +145,45 @@
         localStorage.setItem('inv', JSON.stringify(inventory));
       });
 
+    }
+
+    function showthing() {
+      document.getElementById("lock").classList.toggle("hidden");
+      document.getElementById("lock1").classList.toggle("hidden")
+    }
+    colors = [0,0,0,0,0,0,0,0]
+    colordict = {
+      0: "#ff2019",
+      1: "#37ddc9",
+      2: "#1ff53c",
+      3: "#e52fcb"
+    }
+    document.getElementById("color0").addEventListener("click", colorLock)
+    document.getElementById("color1").addEventListener("click", colorLock)
+    document.getElementById("color2").addEventListener("click", colorLock)
+    document.getElementById("color3").addEventListener("click", colorLock)
+    document.getElementById("color4").addEventListener("click", colorLock)
+    document.getElementById("color5").addEventListener("click", colorLock)
+    document.getElementById("color6").addEventListener("click", colorLock)
+    document.getElementById("color7").addEventListener("click", colorLock)
+
+    function colorLock(e) {
+      // blue #37ddc9 red #ff2019 green #1ff53c pink #e52fcb
+      num=e.srcElement.id.split("color")[1]
+      colors[num]++
+      if (colors[num] == 4) {
+        colors[num] = 0
+      }
+      console.log(colors[num])
+
+      e.srcElement.style.backgroundColor = colordict[colors[num]]
+
+      if (JSON.stringify(colors) == JSON.stringify([1, 3, 0, 2, 0, 1, 2, 3])) {
+        grabItem("Images/triangle.png")
+        document.getElementById("lock").classList.toggle("hidden");
+        document.getElementById("lock1").classList.toggle("hidden")
+      }
+      
     }
 
     function clear() {
@@ -237,30 +279,26 @@
       }
     }
    
+   function moveLeft() {
+      window.location.href = "R1F2.html";
+    }
     //console for windows
     function speak(){
        text = "You aren't strong enough to break the rusty window bars.";
     }
 	  
     //Code for talking to the gaurd
-    var go = 0;
-
-    function changeVarYes(){
-      go = 1;
-      text = "These coins might do... If you give them to me, I'll let you through.";
-      alert("If you are willing to give your coins to the gaurd, click 'continue'. Otherwise, click 'cancel.'");
-      consume("Images/bagocoins.png");
-    }
-    function changeVarNo(){
-      go = 1;
-      text = "Don't return until you have something to give me";
-
-    }
     function talk() {
-      while (go != 1) {
+      if (g == 0) {
         text = "Hello, prisoner. If you wish to make it out of here alive, I need some payment. Do you have any valuables to give me?";
-        document.getElementById("button").style.display = "block";
-        document.getElementById("button1").style.display = "block";
+        if (inventory.includes("Images/bagocoins.png")) {
+          g = 1
+        }
+      }
+      else if (g==1) {
+        consume("Images/bagocoins.png")
+        text = "Thank you, prisoner. I will open this door for you."
+        document.getElementById("door").src = "Images/blindingdoor.png"
       }
     }
 
