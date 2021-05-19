@@ -109,7 +109,7 @@
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
     <img src="Images/colorlock.png" onclick="showthing()" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
-    <img src="Images/betterbarrel.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
+    <img src="Images/betterbarrel.png" id="barrel" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
     <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:0px;left:200px;">
     <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
@@ -185,6 +185,8 @@
       }
       
     }
+
+    document.getElementById("barrel").addEventListener("click", function(){grabItem("Images/goldkey.png")})
 
     function clear() {
       localStorage.setItem('inv', []);
@@ -309,10 +311,17 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
+
+    a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R2F2Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
+  }
+  document.addEventListener("click", play)
    
   </script>
-  <audio controls loop autoplay hidden>
-    <source src="Music/R2F2Music.mp3" type="audio/mpeg">
-  </audio>
 </body>
 </html>

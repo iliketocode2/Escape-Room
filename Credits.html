@@ -26,10 +26,14 @@
   }
   function play() {
     pageScroll()
-    var audio = new Audio('Music/rick.mp3');
-    audio.play();
+    if (a) {
+      var audio = new Audio('Music/rick.mp3');
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
+
 
 
   </script>

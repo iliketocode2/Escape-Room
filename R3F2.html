@@ -156,7 +156,7 @@
         consume("Images/circle.png")
         consume("Images/woodrhombus.png")
         consume("Images/woodensuare.png")
-        grabItem("chisel.png")
+        grabItem("Images/chizle.png")
       }
     }
 
@@ -255,12 +255,15 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
-    function play() {
-    var audio = new Audio('Music/R3F2Music.mp3');
-    audio.play();
+    a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R3F2Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
-
   </script>
 </body>
 </html>

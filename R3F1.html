@@ -378,12 +378,15 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
-    function play() {
-    var audio = new Audio('Music/R3F1Music.mp3');
-    audio.play();
+    a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R3F1Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
-
   </script>
 </body>
 </html>

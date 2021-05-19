@@ -246,13 +246,11 @@
 //Music load when page appears -- chrome specific	  
   a=true
   function play() {
-
     if (a) {
-      var audio = new Audio('Music/R1F1Music.mp3');
-    audio.play();
-    a=false
-  }
-    
+      var audio = new Audio('Music/R1F1Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
 
