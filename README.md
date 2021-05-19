@@ -19,4 +19,6 @@ THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 
 Completed Rooms:
 - Room 1
-- Room 2
+- Room 2 
+- Room 3 (We may want to change the size of the open closet image as well as prevent an opened closet from locking again when you switch rooms)
+- Room 4 (Maybe add some more decorations or something)
