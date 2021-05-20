@@ -1,4 +1,5 @@
-# Escape-Room (Crumbling Castle)
+# Escape the Crumbling Castle!
+##An escape room set in the medieval era
 
 WHERE IS THE IMAGE OF THE HORSE?????
 
