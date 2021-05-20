@@ -98,8 +98,8 @@
 <body>
   <div class="back">
     <img src="Images/window.png" onclick="text='You are not strong enough to break these rusty bars.'" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:20%;">
-    <img src="Images/window.png" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:40%;">
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:100px;left:-35%;">
+    <img src="Images/window.png" onclick="text='You are not strong enough to break these rusty bars.'" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:40%;">
+    <img src="Images/door.png" onclick="openDoor()" id="door" alt="door" style="height:400px;width:350px;position:relative;top:100px;left:-35%;">
     <img src="Images/ladder.png" onclick="text='I made this rope ladder using the hook and the rope. It goes back to the room with the trophy.'" id="ladder" alt="rope ladder" style="height:300px;width:150px;position:relative;top:-100px;left:30%;">
     <img src="Images/chess.png" onclick="text='Hmm... a chess puzzle. I hope my elo is high enough to solve this.'" id="chess" alt="chess board" style="height:200px;width:200px;position:relative;top:100px;left:-45%;">
     <img src="Images/shapes.png" onclick="text='This wooden box has four slots for different shapes. I wonder where those might be...'" id="shapes" alt="lock box with holes for shapes" style="height:200px;width:200px;position:relative;top:150px;left:-30%;">
@@ -129,10 +129,10 @@
 	  
     function openDoor() {
       if (consume("Images/purplekey.png")) {
-	//Open door thingy
-	var yes = document.getElementById("door");
-	yes.src = "Images/blindingdoor.png";
-	document.getElementById("arrow").style.display = "block";
+	    //Open door thingy
+	    var yes = document.getElementById("door");
+	    yes.src = "Images/blindingdoor.png";
+	    document.getElementById("arrow").style.display = "block";
         text = "You have opened the door to the 2nd room on this floor.";
       }
       else {
@@ -241,15 +241,6 @@
       text = "You found a key in the haystack.";
     }
 
-    function openDoor() {
-      if (consume("Images/king.jpg") ) {
-	
-        text = "You have opened the door to the 2nd room.";
-      }
-      else {
-        text = "The king blocks your escape!";
-      }
-    }
    
     var text = "There's some writing on the wall saying, 'Only a true follower of chivalry can pass this puzzle!'"
    
@@ -258,8 +249,9 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
+    
     a=true
-  function play() {
+    function play() {
     if (a) {
       var audio = new Audio('Music/R3F2Music.mp3');audio.loop=true;
       audio.play();
