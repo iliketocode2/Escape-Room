@@ -116,6 +116,27 @@
   </div>
 
   <script>
+    function startTimer(duration) {
+      if (!localStorage.getItem('timer')) {
+        var timer = duration, minutes, seconds;
+      } else {
+        timer = localStorage.getItem('timer')
+      }
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.title = `${minutes}:${seconds}`
+
+          if (--timer < 0) {
+              window.location = "IntroPage.html"
+          }
+          localStorage.setItem('timer', timer);
+      }, 1000);
+    }
 	
     document.getElementById("arrow").style.display = "none";
 	  
@@ -128,7 +149,7 @@
     
 	  
     function openDoor() {
-      if (consume("Images/purplekey.png")) {
+      if (inventory.includes("Images/purplekey.png")) {
 	    //Open door thingy
 	    var yes = document.getElementById("door");
 	    yes.src = "Images/blindingdoor.png";
@@ -141,7 +162,10 @@
     }
 	  
     window.onload = function() {
+      startTimer(20*60);
+
       loadInv();
+
     };
 
     inventory = []
@@ -240,7 +264,7 @@
       grabItem("Images/bluekey.png")
       text = "You found a key in the haystack.";
     }
-
+ 
    
     var text = "There's some writing on the wall saying, 'Only a true follower of chivalry can pass this puzzle!'"
    
