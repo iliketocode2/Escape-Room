@@ -1,16 +1,13 @@
 # Escape-Room (Crumbling Castle)
+
+WHERE IS THE IMAGE OF THE HORSE?????
+
 Work your way through the puzzles! Languages: HTML, CSS, and js
 Be sure to view the credits for all images, scenes, and sprites.
 
-
-**WAIT, WE NEED TO CONSUME THE ROPE AND HOOK TO MAKE A ROPE LADDER TO R3F2 -- I need to fix the code.
-**
-
 THIS IS A WORK IN PROGRESS, THE FINAL PROJECT WILL TAKE WEEKS TO COMPLETE
 -
-**Check out the wiki page!**
 -
-
 1. *FInish putting images in the right spots (will)*
 2. *Add timer*
 3. *Add credits -- we need to collect all of the img urls (final step)*
