@@ -170,8 +170,8 @@
 
     function nameItem(item) {
       name = item.match(/(?<=\/).*/g)
-      a = name.match(/(.*)\.[^.]+$/)
-	    return a[1]
+      ok = name.match(/(.*)\.[^.]+$/)
+	    return ok[1]
     }
     
     function grabItem(item) {
