@@ -111,6 +111,11 @@
       window.location.href = "R2F2.html";
     }
   
+    function saveHorse(){
+      text = "You found your horse! You need a gold key to unlock him, though.";
+    }
+    
+  
     function startTimer(duration) {
       if (!localStorage.getItem('timer')) {
         var timer = duration, minutes, seconds;
@@ -217,19 +222,6 @@
       }
     }
 
-
-
-	
-	//Open door thingy
-	var yes = document.getElementById("door");
-	yes.src = "Images/blindingdoor.png";
-	document.getElementById("arrow").style.display = "block";
-        text = "You have opened the door to the 2nd room.";
-      }
-      else {
-        text = "You need two keys to escape.";
-      }
-    }
    
     //console for windows
     function speak(){
