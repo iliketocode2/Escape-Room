@@ -193,7 +193,7 @@
           document.title = `${minutes}:${seconds}`
 
           if (--timer < 0) {
-              window.location = "IntroPage.html"
+              window.location = "IntroPage.html";alert("The Castle collapesd on you! Try again!");
           }
           localStorage.setItem('timer', timer);
       }, 1000);
