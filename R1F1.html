@@ -166,6 +166,10 @@
       item = e.srcElement.getAttribute("src")
       e.srcElement.classList.toggle("hidden")
       grabItem(item)
+      if (!inventory.includes("Images/torch.gif")) {
+        new Audio("SFX/KeyPickup.mp3").play()
+      }
+      else {new Audio("SFX/Fire.mp3").play()}
     }
 
     function nameItem(item) {
@@ -208,7 +212,7 @@
     function openChest(){
       var image = document.getElementById("chest");
       if (consume("Images/greenkey.png") && image.src.match("Images/betterchest")) {
-        image.src = "Images/openChest.png";
+        image.src = "Images/openChest.png";  new Audio("SFX/KeyPickup.mp3").play();
       }
       if (image.src.match("Images/openChest.png")) {
        text = "You found a key in the chest.";
@@ -217,12 +221,13 @@
       else {
         text = "You do not have the key to open this.";
       }
-    }
+       }
 
     function castKey() {
       if (inventory.includes("Images/torch.gif") && consume("Images/handcuffs.png")) {
         document.getElementById("keyForm").classList.toggle("hidden")
         grabItem("Images/greenkey.png")
+        new Audio("SFX/BUBBLES.wav").play()
         text = "You melted the handcuffs using the torch. You now have a key.";
       }
       else {
@@ -232,6 +237,9 @@
 	  
 //yessssss
     function giveKey() {
+      if (!inventory.includes("Images/bluekey.png")) {
+        new Audio("SFX/KeyPickup.mp3").play()
+      }
       grabItem("Images/bluekey.png")
       text = "You found a key in the haystack.";
     }
@@ -243,6 +251,7 @@
 	var yes = document.getElementById("door");
 	yes.src = "Images/blindingdoor.png";
 	document.getElementById("arrow").style.display = "block";
+  new Audio("SFX/DoorOpen.mp3").play();
         text = "You have opened the door to the 2nd room.";
       }
       else {
@@ -266,8 +275,8 @@
 	window.location.href = "R2F1.html";	
 	}
 //Music load when page appears -- chrome specific	  
-  a=true
-  function play() {
+a=true
+    function play() {
     if (a) {
       var audio = new Audio('Music/R1F1Music.mp3');audio.loop=true;
       audio.play();
