@@ -152,6 +152,27 @@
   </div>
 
   <script>
+    function startTimer(duration) {
+      if (!localStorage.getItem('timer')) {
+        var timer = duration, minutes, seconds;
+      } else {
+        timer = localStorage.getItem('timer')
+      }
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.title = `${minutes}:${seconds}`
+
+          if (--timer < 0) {
+              window.location = "IntroPage.html"
+          }
+          localStorage.setItem('timer', timer);
+      }, 1000);
+    }
     
     function moveRight() {
       window.location.href = "R3F1.html";
@@ -161,6 +182,8 @@
     }
 	  
     window.onload = function() {
+      startTimer(20*60);
+
       loadInv();
     };
 
@@ -189,6 +212,9 @@
         toggleThing()
         text = "You unlocked the box (the code was 72)."
         grabItem("Images/bagocoins.png")
+      }
+      if (lockArray[0] == 6 && lockArray[1] == 9) {
+        text = "nice"
       }
     }
 
@@ -267,7 +293,7 @@
     
     function grabRope() {
       grabItem("Images/rope.png")
-    }
+    } 
     
     function shirt(){
       text = "Just some nice old clothing.";
@@ -283,9 +309,13 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
-    function play() {
-    var audio = new Audio('Music/R2F1Music.mp3');
-    audio.play();
+    a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R2F1Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
 

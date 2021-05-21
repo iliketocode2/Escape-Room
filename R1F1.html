@@ -88,8 +88,8 @@
     
     <div class="arrow-right" id="arrow" onclick="move()" style="position:relative;left:80%;top:10%;"></div>	  
 	  
-    <div class="rec" style="position:relative;left:40%;" id="keyForm">
-      <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position:relative;">
+    <div class="rec" style="position:relative;left:40%;" id="keyForm" onclick="text='its a mold for casting a key.'">
+      <img src="Images/keyForm.png" alt="key" style="width:75px;height:35px;position:relative;" onclick="text='its a mold for casting a key.'">
     </div>
     
     <img src="Images/betterchest.png" id="chest" alt="treasure chest" style="height:150px;width:200px;position:relative;left:-10%;">
@@ -106,11 +106,33 @@
   </div>
 
   <script>
-    // https://www.dafont.com/seagram-tfb.font
-    // Do DaFont lets gooooooooooooooo
+    function startTimer(duration) {
+      if (!localStorage.getItem('timer')) {
+        var timer = duration, minutes, seconds;
+      } else {
+        timer = localStorage.getItem('timer')
+      }
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.title = `${minutes}:${seconds}`
+
+          if (--timer < 0) {
+              window.location = "IntroPage.html"
+          }
+          localStorage.setItem('timer', timer);
+      }, 1000);
+    }
+
     window.onload = function() {
-	document.getElementById("arrow").style.display = "none";
+	    document.getElementById("arrow").style.display = "none";
+      startTimer(20*60);
       loadInv();
+
     };
 
     inventory = []
@@ -246,13 +268,11 @@
 //Music load when page appears -- chrome specific	  
   a=true
   function play() {
-
     if (a) {
-      var audio = new Audio('Music/R1F1Music.mp3');
-    audio.play();
-    a=false
-  }
-    
+      var audio = new Audio('Music/R1F1Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
   }
   document.addEventListener("click", play)
 

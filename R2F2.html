@@ -11,7 +11,7 @@
     font-family: UwU;
   }
   body {
-    height: 100%;
+    height: 600px;
     margin: 0;
     text-align: center;
   }
@@ -62,57 +62,85 @@
   .hidden {
     visibility: hidden;
   }
-.arrow-right {
-  width: 0; 
-  height: 0; 
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
+  .arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    
+    border-left: 30px solid green;
+  }
+  .arrow-right:hover {
+    border-left: 30px solid lightgreen;
+  }
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
   
-  border-left: 30px solid green;
-}
-.arrow-right:hover {
-   border-left: 30px solid lightgreen;
- }
+    border-right: 30px solid green;
+  }
+  .arrow-left:hover {
+    border-right: 30px solid lightgreen;
+  }
 
  .rec{
-    width: 400x;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border: 3px solid black;
     border-radius: 5px;
     background: gray;
+    display: flex;
+    flex-wrap: wrap;
   }
-  .bar{
+  .circle{
     width: 50px;
     height: 50px;
     background: red;
     border: 3px solid black;
     border-radius: 25px;
+    margin: 5px;
+  }
+  .lockNum {
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    background: red;
+    border: 3px solid black;
+    border-radius: 5px;
   }
 	  
   </style>
 </head>
 <body>
   <div class="back">
-    <div class="rec hidden" id="lock">
-      <div class="bar" id="color0"></div>
-      <div class="bar" id="color1"></div>
-      <div class="bar" id="color2"></div>
-      <div class="bar" id="color3"></div>
-    </div>
-    <div class="rec hidden" id="lock1">
-      <div class="bar" id="color4"></div>
-      <div class="bar" id="color5"></div>
-      <div class="bar" id="color6"></div>
-      <div class="bar" id="color7"></div>
+    <div id="colors" style="display:flex;flex-wrap:wrap;height:160px;width:320px;">
+      <div class="rec" id="lock">
+        <div class="circle" id="color0"></div>
+        <div class="circle" id="color1"></div>
+        <div class="circle" id="color2"></div>
+        <div class="circle" id="color3"></div>
+      </div>
+      <div class="rec" id="lock1">
+        <div class="circle" id="color4"></div>
+        <div class="circle" id="color5"></div>
+        <div class="circle" id="color6"></div>
+        <div class="circle" id="color7"></div>
+      </div>
+      <div class="lockNum" style="position:relative;margin-left:310px;margin-top:-150px;" id="X">X</div>
     </div>
 
-    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:0%;left:-10%;">
-    <img src="Images/colorlock.png" onclick="showthing()" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
-    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
-    <img src="Images/betterbarrel.png" id="colorlock" style="height:200px;width:200px; position:relative;top:0%;left:10%;">
-    <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:10%;">
-    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:0px;left:200px;">
-    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:10%;top:-100px;display:block;"></div>
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px;position:relative;top:-200px;left:30%;">
+    <img src="Images/window.png" onclick="speak()" alt="dungeon window" style="height:200px;width:200px; position:relative;top:-200px;left:40%;">
+    <img src="Images/colorlock.png" id="colorlock" style="height:200px;width:300px; position:relative;top:0%;left:13%;">
+    <img src="Images/betterbarrel.png" id="barrel" style="height:200px;width:200px; position:relative;top:0%;left:12%;">
+    <img src="Images/Zoteomightygaurd.png" onclick="talk()" id="colorlock" style="height:300px;width:200px; position:relative;top:0%;left:-30%;">
+    <img src="Images/blindingdoor.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:0px;left:180px;">
+    <img src="Images/door.png" id="door" alt="door" style="height:400px;width:350px;position:relative;top:-400px;left:-600px;">
+    
+    <div class="arrow-left" id="arrow" onclick="moveLeft()" style="position:relative;left:15%;top:-600px;"></div>
+    <div class="arrow-right" id="arrow1" onclick="moveRight()" style="position:relative;left:90%;top:-600px;"></div>
 
   </div>
   <div class="console">
@@ -124,10 +152,48 @@
   </div>
 
   <script>
+    function startTimer(duration) {
+      if (!localStorage.getItem('timer')) {
+        var timer = duration, minutes, seconds;
+      } else {
+        timer = localStorage.getItem('timer')
+      }
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.title = `${minutes}:${seconds}`
+
+          if (--timer < 0) {
+              window.location = "IntroPage.html"
+          }
+          localStorage.setItem('timer', timer);
+      }, 1000);
+    }
+  
+    //Show and hide the lock
+    
+    document.getElementById("colors").classList.toggle("hidden");
+    document.getElementById("X").addEventListener("click", toggleThing)
+    document.getElementById("colorlock").addEventListener("click", showThing)
+
+    function toggleThing() {
+      document.getElementById("colors").classList.toggle("hidden")
+    }
+    function showThing(){
+  	  document.getElementById("colors").classList.toggle("hidden")
+	    text = "These boxes have a color lock on them. Clicking each circle will change its color.";
+	  }
+  
+  
     g = 0
     // https://www.dafont.com/seagram-tfb.font
     window.onload = function() {
 	    document.getElementById("arrow").style.display = "none";
+      startTimer(20*60);
       loadInv();
     };
 
@@ -147,15 +213,15 @@
 
     }
 
-    function showthing() {
-      document.getElementById("lock").classList.toggle("hidden");
-      document.getElementById("lock1").classList.toggle("hidden")
-    }
     colors = [0,0,0,0,0,0,0,0]
     colordict = {
+      //red
       0: "#ff2019",
+      //blue
       1: "#37ddc9",
+      //green
       2: "#1ff53c",
+      //pink
       3: "#e52fcb"
     }
     document.getElementById("color0").addEventListener("click", colorLock)
@@ -178,13 +244,14 @@
 
       e.srcElement.style.backgroundColor = colordict[colors[num]]
 
-      if (JSON.stringify(colors) == JSON.stringify([1, 3, 0, 2, 0, 1, 2, 3])) {
+      if (JSON.stringify(colors) == JSON.stringify([1, 3, 2, 0, 0, 1, 3, 2])) {
         grabItem("Images/triangle.png")
-        document.getElementById("lock").classList.toggle("hidden");
-        document.getElementById("lock1").classList.toggle("hidden")
+        document.getElementById("colors").classList.toggle("hidden")
       }
       
     }
+
+    document.getElementById("barrel").addEventListener("click", function(){grabItem("Images/goldkey.png")})
 
     function clear() {
       localStorage.setItem('inv', []);
@@ -257,7 +324,7 @@
       else {
         text = "You do not have the right materials to create a key.";
       }
-    }
+    } 
 	  
 //yessssss
     function giveKey() {
@@ -265,23 +332,6 @@
       text = "You found a key in the haystack.";
     }
 
-    function openDoor() {
-      if (consume("Images/bluekey.png") && consume("Images/redkey.png")) {
-	
-	//Open door thingy
-	var yes = document.getElementById("door");
-	yes.src = "Images/blindingdoor.png";
-	document.getElementById("arrow").style.display = "block";
-        text = "You have opened the door to the 2nd room.";
-      }
-      else {
-        text = "You need two keys to escape.";
-      }
-    }
-   
-   function moveLeft() {
-      window.location.href = "R1F2.html";
-    }
     //console for windows
     function speak(){
        text = "You aren't strong enough to break the rusty window bars.";
@@ -295,11 +345,19 @@
           g = 1
         }
       }
-      else if (g==1) {
-        consume("Images/bagocoins.png")
+      else if (g==1 && inventory.includes("Images/bagocoins.png")) {
         text = "Thank you, prisoner. I will open this door for you."
         document.getElementById("door").src = "Images/blindingdoor.png"
+        //Open door thingy
+	      document.getElementById("arrow").style.display = "block";
       }
+    }
+    
+    function moveLeft() {
+      window.location.href = "R1F2.html";
+    }
+    function moveRight() {
+      window.location.href = "R3F2.html";
     }
 
     var text = "Ah! There's somebody else in this room!";
@@ -309,10 +367,17 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
+
+    a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R2F2Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
+  }
+  document.addEventListener("click", play)
    
   </script>
-  <audio controls loop autoplay hidden>
-    <source src="Music/R2F2Music.mp3" type="audio/mpeg">
-  </audio>
 </body>
 </html>

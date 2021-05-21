@@ -95,10 +95,31 @@
   </div>
 
   <script>
+    function startTimer(duration) {
+      if (!localStorage.getItem('timer')) {
+        var timer = duration, minutes, seconds;
+      } else {
+        timer = localStorage.getItem('timer')
+      }
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10)
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          document.title = `${minutes}:${seconds}`
+
+          if (--timer < 0) {
+              window.location = "IntroPage.html"
+          }
+          localStorage.setItem('timer', timer);
+      }, 1000);
+    }
     // https://www.dafont.com/seagram-tfb.font
     // Do DaFont lets gooooooooooooooo
     window.onload = function() {
-	document.getElementById("arrow").style.display = "none";
+    startTimer(20*60);
       loadInv();
     };
 
@@ -208,7 +229,7 @@
       }
       else {
         text = "You need two keys to escape.";
-      }
+      } 
     }
    
     //console for windows
@@ -223,10 +244,17 @@
     function displayMessage() {
       document.getElementById('info').innerHTML = text;
     }
+  a=true
+  function play() {
+    if (a) {
+      var audio = new Audio('Music/R2F2Music.mp3');audio.loop=true;
+      audio.play();
+      a=false
+    }
+  }
+  document.addEventListener("click", play)
+
    
   </script>
-  <audio controls loop autoplay hidden>
-    <source src="Music/R2F2Music.mp3" type="audio/mpeg">
-  </audio>
 </body>
 </html>
